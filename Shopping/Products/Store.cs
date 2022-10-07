@@ -81,22 +81,45 @@ public class Store
     //     return;
     // }
 
-    
-    // search product by ID
-    public void SearchProductById(int productId)
+    // public bool SearchProductById(int productId)
+    // {
+    //     var productInList = _products.FirstOrDefault(p =>
+    //         p.ProductId.Equals(productId));
+    //     _products.Remove(productInList);
+    //     return true;
+    // }
+
+
+    public void searchProductById(int id)
     {
-        var productsInList = from p in _products
-            where p.ProductId == productId
+        var products = from p in
+                Products
+            where p.ProductId == id
             select p;
 
-        foreach (var product in productsInList)
+        foreach (var product in products)
         {
-            Console.WriteLine($"Id of product {product.ProductId}");
-            Console.WriteLine($"Name of product {product.Name}");
-            Console.WriteLine($"Price of product {product.Price}");
-            Console.WriteLine($"Category of product {product.Category}");
+            Console.WriteLine($"Id of product: {product.ProductId}");
+            Console.WriteLine($"Id of product: {product.Name}");
+            Console.WriteLine($"Id of product: {product.Price}");
+            Console.WriteLine($"Id of product: {product.Category}");
         }
+    }
+    
+    public void searchProductByName(string name)
+    {
+        var products = from p in
+                Products
+            where p.Name.Trim().ToLower() == name.Trim().ToLower()
+            select p;
 
+        foreach (var product in products)
+        {
+            Console.WriteLine($"Id of product: {product.ProductId}");
+            Console.WriteLine($"Id of product: {product.Name}");
+            Console.WriteLine($"Id of product: {product.Price}");
+            Console.WriteLine($"Id of product: {product.Category}");
+        }
     }
 
     public void UpdateProductById(int id)
@@ -147,19 +170,4 @@ public class Store
     // }
     
     
-    // search product by name
-    public void SearchProductByName(string name)
-    {
-        var products = from p in _products
-            where p.Name.Trim().ToLower() == name
-            select p;
-
-        foreach (var product in products)
-        {
-            Console.WriteLine($"Id of product {product.ProductId}");
-            Console.WriteLine($"Name of product {product.Name}");
-            Console.WriteLine($"Price of product {product.Price}");
-            Console.WriteLine($"Category of product {product.Category}");
-        }
-    }
 } 

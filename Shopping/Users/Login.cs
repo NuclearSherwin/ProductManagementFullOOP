@@ -1,5 +1,4 @@
 using System.Threading.Channels;
-using Shopping.Order;
 using Shopping.Products;
 
 namespace Shopping.Users;
@@ -9,18 +8,12 @@ public class Login : ILogin
     // list user and roles
     private List<Person> _accountList = new List<Person>();
     
-
+    
+    
     // create store object
     private static Store storeServices = new Store();
-    
-    // creat program object
-    private static Program _program = new Program();
-    
-    // order details list
-    private static OrderDetail _orderDetail = new OrderDetail();
 
-    // create object purchase
-    private static Purchase _purchase = new Purchase();
+
 
     public bool LoginAsUser(string inputUserName, string inputPassword)
     {
@@ -31,7 +24,9 @@ public class Login : ILogin
         if (inputUserName == usernameUser && inputPassword == passwordUser)
         {
             LoginUiForClient();
-            return true;
+            Program.isLogin = true;
+                return true;
+
         }
         else
         {
@@ -47,6 +42,7 @@ public class Login : ILogin
         if (inputUserName == usernameUser && inputPassword == passwordUser)
         {
             LoginUiForStoreOwner();
+            Program.isLogin = true;
             return true;
         }
         else
@@ -54,17 +50,7 @@ public class Login : ILogin
             return false;
         }
     }
-
-    public void LoginUserInterface()
-    {
-        Console.WriteLine();
-        Console.WriteLine("| Enter 1: Login as a client (user)");
-        Console.WriteLine("| Enter 2: Login as a store owner");
-        Console.WriteLine();
-        Console.Write("Please enter your choice: ");
-
-    }
-
+    
     public static void LoginUiForClient()
     {
         Console.WriteLine();
@@ -74,23 +60,6 @@ public class Login : ILogin
         Console.WriteLine("| Enter 4: Logout");
         Console.WriteLine();
         Console.WriteLine("Enter your options here: ");
-        
-        string chosenNum = Console.ReadLine();
-
-        switch (chosenNum)
-        {
-            case "1":
-                break;
-            case "2":
-                _purchase.ShowAllPurchased();
-                break;
-            case "3":
-                break;
-            case "4":
-                break;
-            default:
-                break;
-        }
     }
     
     public void LoginUiForStoreOwner()
@@ -100,8 +69,8 @@ public class Login : ILogin
         Console.WriteLine("| Enter 2: Show all products");
         Console.WriteLine("| Enter 3: Update product");
         Console.WriteLine("| Enter 4: Delete product");
-        Console.WriteLine("| Enter 5: Search product by ID");
-        Console.WriteLine("| Enter 6: Search product by Name");
+        Console.WriteLine("| Enter 5: Search id of product");
+        Console.WriteLine("| Enter 6: Search name of product");
         Console.WriteLine("| Enter 7: Logout");
         Console.WriteLine();
         Console.WriteLine("Enter your options here: ");
@@ -127,18 +96,14 @@ public class Login : ILogin
                 storeServices.DeleteProduct(idDelete);
                 break;
             case "5":
-                Console.WriteLine("Enter product ID: ");
+                Console.WriteLine("Enter product ID to search");
                 var idToSearch = Convert.ToInt32(Console.ReadLine());
-                storeServices.SearchProductById(idToSearch);
+                storeServices.searchProductById(idToSearch);
                 break;
             case "6":
-                Console.WriteLine("Enter product name");
-                var nameToSearch = Console.ReadLine().Trim().ToLower();
-                storeServices.SearchProductByName(nameToSearch);
-                break;
-            case "7":
-                Program.isLogin = false;
-                Environment.Exit(0);
+                Console.WriteLine("Enter name of product to search");
+                string nameToSearch = Console.ReadLine();
+                storeServices.searchProductByName(nameToSearch);
                 break;
             default:
                 break;

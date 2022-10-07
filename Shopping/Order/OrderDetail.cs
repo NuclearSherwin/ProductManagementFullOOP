@@ -17,17 +17,9 @@ public class OrderDetail
         Product = product;
         Purchase = purchase;
     }
-
-    public OrderDetail()
-    {
-        
-    }
     
     
-
-
-
-
+    
     public override string ToString()
     {
         return base.ToString();

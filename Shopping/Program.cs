@@ -10,11 +10,10 @@ public class Program
     public static void Main(string[] args)
     {
         
-        
         // Create Login object
         Login loginServices = new Login();
         
-        
+
 
 
         do
@@ -44,8 +43,7 @@ public class Program
                         Console.WriteLine("Enter password:");
                         string password = Console.ReadLine();
                         loginServices.LoginAsUser(username, password);
-
-                        isLogin = true;
+                        
 
                         break;
                     case "2":
@@ -54,8 +52,7 @@ public class Program
                         Console.WriteLine("Enter password:");
                         string storePassword = Console.ReadLine();
                         loginServices.LoginAsStoreOwner(storeName, storePassword);
-
-                        isLogin = true;
+                        
                         break;
             
               
@@ -76,7 +73,7 @@ public class Program
     }
 
 
-    private static void LoginUserInterface()
+    public static void LoginUserInterface()
     {
         Console.WriteLine();
         Console.WriteLine("| Enter 1: Login as a client (user)");
