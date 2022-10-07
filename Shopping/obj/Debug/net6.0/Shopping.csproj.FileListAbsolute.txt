@@ -1,0 +1,15 @@
+/home/phong/work/console-app-c#/Shopping/Shopping/bin/Debug/net6.0/Shopping
+/home/phong/work/console-app-c#/Shopping/Shopping/bin/Debug/net6.0/Shopping.deps.json
+/home/phong/work/console-app-c#/Shopping/Shopping/bin/Debug/net6.0/Shopping.runtimeconfig.json
+/home/phong/work/console-app-c#/Shopping/Shopping/bin/Debug/net6.0/Shopping.dll
+/home/phong/work/console-app-c#/Shopping/Shopping/bin/Debug/net6.0/Shopping.pdb
+/home/phong/work/console-app-c#/Shopping/Shopping/obj/Debug/net6.0/Shopping.csproj.AssemblyReference.cache
+/home/phong/work/console-app-c#/Shopping/Shopping/obj/Debug/net6.0/Shopping.GeneratedMSBuildEditorConfig.editorconfig
+/home/phong/work/console-app-c#/Shopping/Shopping/obj/Debug/net6.0/Shopping.AssemblyInfoInputs.cache
+/home/phong/work/console-app-c#/Shopping/Shopping/obj/Debug/net6.0/Shopping.AssemblyInfo.cs
+/home/phong/work/console-app-c#/Shopping/Shopping/obj/Debug/net6.0/Shopping.csproj.CoreCompileInputs.cache
+/home/phong/work/console-app-c#/Shopping/Shopping/obj/Debug/net6.0/Shopping.dll
+/home/phong/work/console-app-c#/Shopping/Shopping/obj/Debug/net6.0/refint/Shopping.dll
+/home/phong/work/console-app-c#/Shopping/Shopping/obj/Debug/net6.0/Shopping.pdb
+/home/phong/work/console-app-c#/Shopping/Shopping/obj/Debug/net6.0/Shopping.genruntimeconfig.cache
+/home/phong/work/console-app-c#/Shopping/Shopping/obj/Debug/net6.0/ref/Shopping.dll
