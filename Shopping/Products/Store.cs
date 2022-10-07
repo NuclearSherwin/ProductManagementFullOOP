@@ -43,17 +43,25 @@ public class Store
         double price;
         string category;
 
-        Console.WriteLine("Enter id");
-        id = int.Parse(Console.ReadLine());
-        Console.WriteLine("Enter name");
-        name = Console.ReadLine();
-        Console.WriteLine("Enter price");
-        price = double.Parse(Console.ReadLine());
-        Console.WriteLine("Enter category");
-        category = Console.ReadLine();
+        try
+        {
+            Console.WriteLine("Enter id");
+            id = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter name");
+            name = Console.ReadLine();
+            Console.WriteLine("Enter price");
+            price = double.Parse(Console.ReadLine());
+            Console.WriteLine("Enter category");
+            category = Console.ReadLine();
+            Product product = new Product(id, name, price, category);
+            _products.Add(product);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Error at " + e.Message);
+        }
 
-        Product product = new Product(id, name, price, category);
-        _products.Add(product);
+
     }
 
     public void ShowProduct()
@@ -83,7 +91,14 @@ public class Store
 
     public void UpdateProductById(int id)
     {
-        if (id != null)
+        var isExistID = _products.FirstOrDefault(p =>p.ProductId == id);
+        
+
+        if (isExistID == null)
+        {
+            Console.WriteLine("Not found!");
+        }
+        else
         {
             Console.WriteLine("Enter product name");
             _products.FirstOrDefault(p => p.ProductId
@@ -94,24 +109,25 @@ public class Store
             Console.WriteLine("Enter product category");
             _products.FirstOrDefault(p => p.ProductId
                                           == id).Category = Console.ReadLine();
+            Console.WriteLine("Update successfully!");
         }
-        else
-        {
-            Console.WriteLine("Product not found");
-        }
+        
         
     }
 
     public void DeleteProduct(int id)
     {
-        if (id != null)
+        var isExistID = _products.FirstOrDefault(p =>p.ProductId == id);
+        if (isExistID == null)
         {
-            _products.Remove(_products.Where(p => p.ProductId
-                                                  == id).First());
+            Console.WriteLine("Not Found");
         }
         else
         {
-            Console.WriteLine("Not Found");
+            _products.Remove(_products.Where(p => p.ProductId
+                                                  == id).First());
+
+            Console.WriteLine("Delete product successfully!");
         }
     }
 

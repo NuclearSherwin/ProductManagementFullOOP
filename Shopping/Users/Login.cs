@@ -88,6 +88,9 @@ public class Login : ILogin
                 storeServices.UpdateProductById(idUpdate);
                 break;
             case "4":
+                Console.WriteLine("Enter product ID to delete: ");
+                var idDelete = Convert.ToInt32(Console.ReadLine());
+                storeServices.DeleteProduct(idDelete);
                 break;
             default:
                 break;
