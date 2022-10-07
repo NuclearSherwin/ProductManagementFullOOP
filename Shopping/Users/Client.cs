@@ -1,4 +1,5 @@
 using System.Threading.Channels;
+using Shopping.Order;
 using Shopping.Products;
 
 namespace Shopping.Users;
@@ -9,6 +10,10 @@ public class Client : Person
     public string UserName { get; set; }
     public string Password { get; set; }
     private List<Purchase> _purchases = new List<Purchase>();
+    
+    // list order detail
+    private List<OrderDetail> _orderDetails = new List<OrderDetail>();
+    
     
     // get and set method
     public List<Purchase> Purchases

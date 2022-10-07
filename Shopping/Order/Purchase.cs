@@ -49,11 +49,17 @@ public class Purchase
         }
     }
 
+    // constructors
     public Purchase(int id, Client client, DateTime purchaseDate)
     {
         Id = id;
         Client = client;
         PurchaseDate = purchaseDate;
+    }
+
+    public Purchase()
+    {
+        
     }
 
 
@@ -71,6 +77,20 @@ public class Purchase
     {
         return "Order ID: " + Id + "Client " + _client.Name + 
                "PurchaseDate " + purchaseDate;
+    }
+    
+    
+    // show all records (user bought)
+    public void ShowAllPurchased()
+    {
+        Console.WriteLine("List of record products: ");
+        foreach (var orderDetail in _orderDetails)
+        {
+            Console.WriteLine($"Id of orderDetails: {orderDetail.Id}");
+            Console.WriteLine($"Id of orderDetails: {orderDetail.Product.Name}");
+            Console.WriteLine($"Id of orderDetails: {orderDetail.Product.Price}");
+            Console.WriteLine($"Id of orderDetails: {orderDetail.Purchase.Client.UserName}");
+        }
     }
 
     public override string ToString()

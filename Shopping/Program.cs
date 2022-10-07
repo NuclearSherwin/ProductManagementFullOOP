@@ -1,19 +1,20 @@
 ﻿using Shopping.Products;
 using Shopping.Users;
 
-class Program
+public class Program
 {
     private static char anwser;
     // check isLogin
-    private static bool isLogin = false;
+    public static bool isLogin = false;
     
     public static void Main(string[] args)
     {
         
+        
         // Create Login object
         Login loginServices = new Login();
         
-
+        
 
 
         do
@@ -75,7 +76,7 @@ class Program
     }
 
 
-    public static void LoginUserInterface()
+    private static void LoginUserInterface()
     {
         Console.WriteLine();
         Console.WriteLine("| Enter 1: Login as a client (user)");
