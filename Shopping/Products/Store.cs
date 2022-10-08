@@ -208,4 +208,17 @@ public class Store : ILogin
 
         return true;
     }
+    
+    
+    // add a new user
+    public void AddUser()
+    {
+        Client client = new Client();
+        client.ClientId = UserInterface.EnterClientId();
+        // input the rest of info of user
+        client.InputInformation();
+        // add new user to list
+        Clients.Add(client);
+        UserInterface.MenuForUser();
+    }
 } 

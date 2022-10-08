@@ -20,6 +20,12 @@ public class UserInterface
         Console.WriteLine("Enter user phone number: ");
         return Console.ReadLine();  
     }
+
+    public static int EnterClientId()
+    {
+        Console.WriteLine("Enter user ID: ");
+        return int.Parse(Console.ReadLine());
+    }
     
     
     
@@ -27,8 +33,8 @@ public class UserInterface
     public static void LoginMenu()
     {
         Console.WriteLine();
-        Console.WriteLine("1. Login as user");
-        Console.WriteLine("2. Login as store owner");
+        Console.WriteLine("1. Login as store owner");
+        Console.WriteLine("2. Login as user");
         Console.WriteLine("Enter your number: ");
         Console.WriteLine();
     }
@@ -50,10 +56,11 @@ public class UserInterface
     public static void MenuForUser()
     {
         Console.WriteLine();
-        Console.WriteLine("| Enter 1: Add client account ");
-        Console.WriteLine("| Enter 2: Show all products");
-        Console.WriteLine("| Enter 3: Purchase a product");
-        Console.WriteLine("| Enter 4: Logout");
+        Console.WriteLine("| Enter 1: Add a new user account");
+        Console.WriteLine("| Enter 2: Show all products ");
+        Console.WriteLine("| Enter 3: Purchase a product ");
+        Console.WriteLine("| Enter 4: delete a purchase");
+        Console.WriteLine("| Enter 5: Logout");
         Console.WriteLine();
         Console.WriteLine("Enter your options here: ");
     }

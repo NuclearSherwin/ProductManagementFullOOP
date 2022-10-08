@@ -32,7 +32,9 @@ public class Program
                         case 1:
                             do
                             {
+                                Console.ForegroundColor = ConsoleColor.Cyan;
                                 Console.WriteLine("Login as store owner");
+                                Console.ForegroundColor = ConsoleColor.White;
                                 Console.WriteLine("Enter username: ");
                                 string username = Console.ReadLine();
                                 Console.WriteLine("Enter password: ");
@@ -182,7 +184,7 @@ public class Program
                                     Console.WriteLine();
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine("Login fail!");
-                                    Console.ForegroundColor = ConsoleColor.Yellow;
+                                    Console.ForegroundColor = ConsoleColor.White;
                                     UserInterface.LoginMenu();
                                 }
 
@@ -192,6 +194,46 @@ public class Program
                         case 2:
                             do
                             {
+                                Console.ForegroundColor = ConsoleColor.Cyan;
+                                Console.WriteLine("Login as user");
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine("Enter username");
+                                string username = Console.ReadLine();
+                                Console.WriteLine("Enter password");
+                                string password = Console.ReadLine();
+                                
+                                // call login function
+                                client.Login(username, password);
+
+                                if (store.Login(username, password))
+                                {
+                                    Console.WriteLine("-----------------------------");
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine("Login successfully");
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                    UserInterface.MenuForUser();
+                                    do
+                                    {
+                                        int choseNum = int.Parse(Console.ReadLine());
+                                        switch (chosenNum)
+                                        {
+                                            case 1:
+                                                store.AddUser();
+                                                UserInterface.MenuForUser();
+                                                break;
+                                            case 2:
+                                                store.ShowProducts();
+                                                UserInterface.MenuForUser();
+                                                break;
+                                            case 3:
+                                                // purchase product
+                                                
+                                                break;
+                                            case 4:
+                                                break;
+                                        }
+                                    } while (true);
+                                }
 
                             } while (chosenNum != 3);
 
