@@ -101,25 +101,33 @@ public class Store : ILogin
     // search product by ID
     public bool searchProductById(int id)
     {
-        var productInList = from p in
-                Products
-            where p.ProductId == id
-            select p;
+        // var productInList = from p in
+        //         Products
+        //     where p.ProductId == id
+        //     select p;
 
+        var productInList = Products.FirstOrDefault(p => p.ProductId == id);
         if (productInList == null)
         {
-            Console.WriteLine("product not found!");
             return false;
         }
 
-        // foreach (var product in productInList)
-        // {
-        //     Console.WriteLine($"Id of product: {product.ProductId}");
-        //     Console.WriteLine($"Id of product: {product.Name}");
-        //     Console.WriteLine($"Id of product: {product.Price}");
-        //     Console.WriteLine($"Id of product: {product.Category}");
-        // }
         return true;
+
+        // if (productInList == null)
+        // {
+        //     Console.WriteLine("product not found!");
+        //     return false;
+        // }
+        //
+        // // foreach (var product in productInList)
+        // // {
+        // //     Console.WriteLine($"Id of product: {product.ProductId}");
+        // //     Console.WriteLine($"Id of product: {product.Name}");
+        // //     Console.WriteLine($"Id of product: {product.Price}");
+        // //     Console.WriteLine($"Id of product: {product.Category}");
+        // // }
+        // return true;
 
 
     }
@@ -220,5 +228,42 @@ public class Store : ILogin
         // add new user to list
         Clients.Add(client);
         UserInterface.MenuForUser();
+    }
+    
+    // search user by ID
+    public bool SearchUserById(int idUserToSearch)
+    {
+        var userInList = Clients.FirstOrDefault(c => c.ClientId.Equals(idUserToSearch));
+        if (userInList == null)
+        {
+            return false;
+        }
+
+        return true;
+    }
+    
+    // search user object
+    public Client searchUserWithObjType(int idUserToSearch)
+    {
+        var userInList = Clients.FirstOrDefault(u => u.ClientId == idUserToSearch);
+        if (userInList == null)
+        {
+            Console.WriteLine("Not found");
+        }
+
+        return userInList;
+
+    }
+    
+    // search product object
+    public Product searchProductWithObjType(int idProductToSearch)
+    {
+        var productInList = Products.FirstOrDefault(p => p.ProductId == idProductToSearch);
+        if (productInList == null)
+        {
+            Console.WriteLine("Not found!");
+        }
+
+        return productInList;
     }
 } 

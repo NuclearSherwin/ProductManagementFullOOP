@@ -1,3 +1,5 @@
+using Shopping.Users;
+
 namespace Shopping;
 
 public class UserInterface
@@ -108,5 +110,20 @@ public class UserInterface
     public static string ModifyFailed()
     {
         return "Modify data failed!";
+    }
+    
+    
+    
+    // for purchase product
+    public static int EnterPurchaseId()
+    {
+        Console.WriteLine("Enter new Id: ");
+        return int.Parse(Console.ReadLine());
+    }
+
+    public static int EnterQuantity()
+    {
+        Console.WriteLine("Enter quantity: ");
+        return int.Parse(Console.ReadLine());
     }
 }

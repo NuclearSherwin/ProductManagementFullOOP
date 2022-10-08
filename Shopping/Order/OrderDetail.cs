@@ -5,17 +5,18 @@ namespace Shopping.Order;
 
 public class OrderDetail
 {
-    public int Id { get; set; }
     public Product Product { get; set; }
     public Purchase Purchase { get; set; }
     
+    public int Quantity { get; set; }
+    
     private List<Product> _products = new List<Product>();
     
-    public OrderDetail(int id, Product product, Purchase purchase)
+    public OrderDetail(Product product, Purchase purchase, int quantity)
     {
-        Id = id;
         Product = product;
         Purchase = purchase;
+        Quantity = quantity;
     }
     
     

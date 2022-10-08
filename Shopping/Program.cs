@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Design;
 using Shopping;
+using Shopping.Order;
 using Shopping.Products;
 using Shopping.Users;
 
@@ -65,9 +66,10 @@ public class Program
                                                     }
 
                                                     // rest of fields
-                                                    string productName = Console.ReadLine();
-                                                    double productPrice = double.Parse(Console.ReadLine());
-                                                    string productCategory = Console.ReadLine();
+
+                                                    string productName = UserInterface.EnterProductName();
+                                                    double productPrice = UserInterface.EnterProductPrice();
+                                                    string productCategory = UserInterface.EnterProductCategory();
 
                                                     // add to productList as store owner
                                                     store.AddProduct(new Product(productId, productName, productPrice,
@@ -226,10 +228,72 @@ public class Program
                                                 UserInterface.MenuForUser();
                                                 break;
                                             case 3:
-                                                // purchase product
+                                                // try - catch
+                                                try
+                                                {
+                                                // first enter user id and check that id must be exist so that ID can purchase product
+                                                int purchaseId = UserInterface.EnterPurchaseId();
+                                                Console.WriteLine("Enter user ID user: ");
+                                                Client newClient = new Client();
+                                                newClient.ClientId = UserInterface.EnterClientId();
+                                                while (!store.SearchUserById(newClient.ClientId))
+                                                {
+                                                    Console.ForegroundColor = ConsoleColor.Red;
+                                                    Console.WriteLine("User id is not exits! Add a new one");
+                                                    Console.ForegroundColor = ConsoleColor.White;
+                                                    newClient.ClientId = UserInterface.EnterClientId();
+                                                }
                                                 
+                                                // then create to purchase
+                                                Client userInList = store.searchUserWithObjType(newClient.ClientId);
+                                                DateTime purchaseDate = DateTime.Now;
+                                                Purchase productPurchase =
+                                                    new Purchase(purchaseId, userInList, purchaseDate);
+                                               
+                                                
+                                                // then add to list
+                                                userInList.AddPurchase(productPurchase);
+                                                Console.WriteLine("Quantity of product: ");
+                                                int productQuantity = int.Parse(Console.ReadLine());
+                                                for (int i = 0; i < productQuantity; i++)
+                                                {
+                                                    Product product = new Product();
+                                                    product.ProductId = UserInterface.EnterProductId();
+                                                    while (!store.searchProductById(product.ProductId))
+                                                    {
+                                                        Console.ForegroundColor = ConsoleColor.Red;
+                                                        Console.WriteLine("ID of purchase does not exist!");
+                                                        Console.ForegroundColor = ConsoleColor.White;
+                                                        product.ProductId = UserInterface.EnterProductId();
+                                                    }
+
+                                                    Product productInList =
+                                                        store.searchProductWithObjType(product.ProductId);
+                                                    Console.WriteLine(productInList.ToString());
+                                                    
+                                                    // Finally add to order detail
+                                                    OrderDetail orderDetail =
+                                                        new OrderDetail(productInList, 
+                                                            productPurchase, UserInterface.EnterQuantity());
+                                                    productPurchase.AddOrderDetail(orderDetail);
+                                                    productInList.AddOrderDetail(orderDetail);
+                                                    Console.ForegroundColor = ConsoleColor.Green;
+                                                    UserInterface.ModifySuccessfully();
+                                                    Console.ForegroundColor = ConsoleColor.White;
+                                                }
+                                                UserInterface.MenuForUser();
+                                                }
+                                                catch (FormatException e)
+                                                {
+                                                    Console.WriteLine("Please enter right format number: " + e.Message);
+                                                }
+                                                catch (Exception e)
+                                                {
+                                                    Console.WriteLine("Error at: " + e.Message);
+                                                }
                                                 break;
                                             case 4:
+                                                
                                                 break;
                                         }
                                     } while (true);
