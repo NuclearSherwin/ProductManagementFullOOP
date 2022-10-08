@@ -3,11 +3,9 @@ using Shopping.Products;
 
 namespace Shopping.Users;
 
-public class Client : Person
+public class Client : Person, ILogin
 {
     public int ClientId { get; set; }
-    public string UserName { get; set; }
-    public string Password { get; set; }
     private List<Purchase> _purchases = new List<Purchase>();
     
     // get and set method
@@ -23,32 +21,36 @@ public class Client : Person
         ClientId = clientId;
     }
 
+    public Client()
+    {
+        
+    }
+
     public Client(string name, int age, string address, string phone, int clientId) 
         : base(name, age, address, phone)
     {
         ClientId = clientId;
     }
 
-    public Client(string userName, string password)
-    {
-        UserName = userName;
-        Password = password;
-    }
 
 
+ 
+    // create user account
     public override void InputInformation()
     {
-        
+        this.ClientId = UserInterface.EnterUserName();
+        this.Name = UserInterface.EnterUserEmail();
+        this.Phone = UserInterface.EnterUserPhoneNum();
     }
 
-    public bool Login(string username, string password)
+    public bool Login(string inputUsername, string inputPassword)
     {
-        string correctUsername = "Phong";
-        string correctPassword = "Phong";
+        string correctUsername = "User";
+        string correctPassword = "User";
         
         // check weather username and password is correct
-        if (username != correctUsername &&
-            password != correctPassword)
+        if (inputUsername != correctUsername &&
+            inputPassword != correctPassword)
         {
             return false;
         }
@@ -56,47 +58,29 @@ public class Client : Person
         return true;
     }
 
-    public void AddPurchase(int input)
+    // add a purchase
+    public void AddPurchase(Purchase purchase)
     {
-        int purchaseId;
-        Purchase purchase = null;
-        
-        int year;
-        int month;
-        int day;
-
-        Client clientBought = null;
-        
-        // DateTime
-        DateTime purchaseDate;
-
-        Console.WriteLine("Enter purchase id");
-        purchaseId = int.Parse(Console.ReadLine());
-        // take current user
-        clientBought.ClientId = ClientId;
-        Console.WriteLine("Enter purchase date");
-        day = int.Parse(Console.ReadLine());
-        Console.WriteLine("Enter purchase month");
-        month = int.Parse(Console.ReadLine());
-        Console.WriteLine("Enter purchase year");
-        year = int.Parse(Console.ReadLine());
-
-        purchaseDate = new DateTime(year, month, day);
-
-        Purchase newPurchase = new Purchase(purchaseId, clientBought, purchaseDate);
-
-        // add to purchase list
-        _purchases.Add(newPurchase);
-
+        Purchases.Add(purchase);
+    }
+    
+    // remove purchase
+    public bool RemovePurchase(Purchase purchase)
+    {
+        var purchaseInList = Purchases.FirstOrDefault(p => 
+            p.)
     }
 
+    // show all product
     public string ShowAllPurchases()
     {
         return $"{_purchases}";
     }
 
+    // remove purchase
     public bool RemovePurchase()
     {
         return true;
     }
+    
 }

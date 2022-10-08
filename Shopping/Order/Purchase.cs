@@ -6,13 +6,22 @@ namespace Shopping.Users;
 public class Purchase
 {
     // fields
-    private int Id { get; set; }
+    private int id { get; set; }
     private Client _client;
     private DateTime purchaseDate;
 
     private List<OrderDetail> _orderDetails = new List<OrderDetail>();
     
     // get and set method
+    public int Id
+    {
+        get
+        {
+            return id;
+        }
+        set { id = value; }
+    }
+    
     public List<OrderDetail> OrderDetailsList
     {
         get

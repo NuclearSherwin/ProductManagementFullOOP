@@ -24,7 +24,6 @@ public class Store
     }
 
     // constructors
-
     public Store(int id)
     {
         Id = id;
@@ -36,6 +35,7 @@ public class Store
     }
     
 
+    // add product to list
     public void AddProduct()
     {
         int id;
@@ -64,7 +64,8 @@ public class Store
 
     }
 
-    public void ShowProduct()
+    // show all product
+    public void ShowProducts()
     {
         Console.WriteLine("List of products: ");
         foreach (var product in _products)
@@ -90,6 +91,7 @@ public class Store
     // }
 
 
+    // search product by ID
     public void searchProductById(int id)
     {
         var products = from p in
@@ -106,6 +108,7 @@ public class Store
         }
     }
     
+    // search product by name
     public void searchProductByName(string name)
     {
         var products = from p in
@@ -122,6 +125,7 @@ public class Store
         }
     }
 
+    // update product by ID
     public void UpdateProductById(int id)
     {
         var isExistID = _products.FirstOrDefault(p =>p.ProductId == id);
@@ -148,6 +152,7 @@ public class Store
         
     }
 
+    // delete product
     public void DeleteProduct(int id)
     {
         var isExistID = _products.FirstOrDefault(p =>p.ProductId == id);

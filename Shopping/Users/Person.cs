@@ -56,10 +56,10 @@ public abstract class Person
     // constructors
     public Person(string name, int age, string address, string phone)
     {
-        this.name = name;
-        this.age = age;
-        this.address = address;
-        this.phone = phone;
+        this.Name = name;
+        this.Age = age;
+        this.Address = address;
+        this.Phone = phone;
     }
 
     public Person()
@@ -67,5 +67,6 @@ public abstract class Person
         
     }
 
+    // input info
     public abstract void InputInformation();
 }

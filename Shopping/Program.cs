@@ -3,6 +3,7 @@ using Shopping.Users;
 
 public class Program
 {
+    // for answer at the end of app
     private static char anwser;
     // check isLogin
     public static bool isLogin = false;
@@ -13,9 +14,7 @@ public class Program
         // Create Login object
         Login loginServices = new Login();
         
-
-
-
+        
         do
         {
             // area for cookie already login
@@ -73,6 +72,7 @@ public class Program
     }
 
 
+    // login user interface
     public static void LoginUserInterface()
     {
         Console.WriteLine();

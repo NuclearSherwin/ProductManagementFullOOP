@@ -1,10 +1,12 @@
 using System.Runtime.InteropServices;
 using Shopping.Order;
+using Shopping.Users;
 
 namespace Shopping.Products;
 
 public class Product
 {
+    // fields
     private int productId;
     private string name;
     private double price;
@@ -19,6 +21,11 @@ public class Product
         Name = name;
         Price = price;
         Category = category;
+    }
+
+    public Product()
+    {
+        
     }
     
     // get and set
@@ -67,16 +74,27 @@ public class Product
         }
     }
     
-    
-    // add product
-    // public void AddProduct(int input)
-    // {
-    //     
-    // }
+    internal void AddOrderDetail(OrderDetail orderDetail)
+    {
+        OrderDetail.Add(orderDetail);
+    }
 
+    public bool RemoveOrderDetail(Purchase purchase)
+    {
+        var orderDetail = OrderDetail.FirstOrDefault(o => o.Purchase.Equals(purchase));
+        if (orderDetail == null)
+        {
+            return false;
+        }
+
+        OrderDetail.Remove(orderDetail);
+
+        return true;
+    }
+    
 
     public override string ToString()
     {
-        return base.ToString();
+        return "Product ID: " + ProductId + "Product name: " + name + "Price: " + price + "Category: " + category;
     }
 }
