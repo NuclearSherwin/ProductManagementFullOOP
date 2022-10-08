@@ -3,7 +3,7 @@ using Shopping.Users;
 
 namespace Shopping.Products;
 
-public class Store
+public class Store : ILogin
 {
     // fields
     public int Id { get; set; }
@@ -36,33 +36,39 @@ public class Store
     
 
     // add product to list
-    public void AddProduct()
+    public void AddProduct(Product product)
     {
-        int id;
-        string name;
-        double price;
-        string category;
-
-        try
-        {
-            Console.WriteLine("Enter id");
-            id = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter name");
-            name = Console.ReadLine();
-            Console.WriteLine("Enter price");
-            price = double.Parse(Console.ReadLine());
-            Console.WriteLine("Enter category");
-            category = Console.ReadLine();
-            Product product = new Product(id, name, price, category);
-            _products.Add(product);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("Error at " + e.Message);
-        }
-
-
+        Products.Add(product);
     }
+    
+    
+    // public void AddProduct()
+    // {
+    //     int id;
+    //     string name;
+    //     double price;
+    //     string category;
+    //
+    //     try
+    //     {
+    //         Console.WriteLine("Enter id");
+    //         id = int.Parse(Console.ReadLine());
+    //         Console.WriteLine("Enter name");
+    //         name = Console.ReadLine();
+    //         Console.WriteLine("Enter price");
+    //         price = double.Parse(Console.ReadLine());
+    //         Console.WriteLine("Enter category");
+    //         category = Console.ReadLine();
+    //         Product product = new Product(id, name, price, category);
+    //         _products.Add(product);
+    //     }
+    //     catch (Exception e)
+    //     {
+    //         Console.WriteLine("Error at " + e.Message);
+    //     }
+    //
+    //
+    // }
 
     // show all product
     public void ShowProducts()
@@ -74,6 +80,7 @@ public class Store
             Console.WriteLine($"Name of product: {product.Name}");
             Console.WriteLine($"Price of product: {product.Price}");
             Console.WriteLine($"Category of product: {product.Category}");
+            Console.WriteLine("-------------------------------------");
         }
     }
 
@@ -92,20 +99,29 @@ public class Store
 
 
     // search product by ID
-    public void searchProductById(int id)
+    public bool searchProductById(int id)
     {
-        var products = from p in
+        var productInList = from p in
                 Products
             where p.ProductId == id
             select p;
 
-        foreach (var product in products)
+        if (productInList == null)
         {
-            Console.WriteLine($"Id of product: {product.ProductId}");
-            Console.WriteLine($"Id of product: {product.Name}");
-            Console.WriteLine($"Id of product: {product.Price}");
-            Console.WriteLine($"Id of product: {product.Category}");
+            Console.WriteLine("product not found!");
+            return false;
         }
+
+        // foreach (var product in productInList)
+        // {
+        //     Console.WriteLine($"Id of product: {product.ProductId}");
+        //     Console.WriteLine($"Id of product: {product.Name}");
+        //     Console.WriteLine($"Id of product: {product.Price}");
+        //     Console.WriteLine($"Id of product: {product.Category}");
+        // }
+        return true;
+
+
     }
     
     // search product by name
@@ -128,7 +144,7 @@ public class Store
     // update product by ID
     public void UpdateProductById(int id)
     {
-        var isExistID = _products.FirstOrDefault(p =>p.ProductId == id);
+        var isExistID = _products.FirstOrDefault(p => p.ProductId == id);
         
 
         if (isExistID == null)
@@ -162,17 +178,34 @@ public class Store
         }
         else
         {
-            _products.Remove(_products.Where(p => p.ProductId
-                                                  == id).First());
+            _products.Remove(_products.Where(
+                p => p.ProductId == id).First());
 
             Console.WriteLine("Delete product successfully!");
         }
     }
+    
+    // to find user have been purchased a product
+    public Client GetUserPurchaseProductById(int idToSearch)
+    {
+        var userInList = Clients.FirstOrDefault(u => u.ClientId
+            .Equals(idToSearch));
+        return userInList;
+    }
+    
+    // login
 
-    // public Client GetAllClientsPurchased()
-    // {
-    //     
-    // }
-    
-    
+    public bool Login(string inputUsername, string inputPassword)
+    {
+        string correctUsername = "storeowner";
+        string correctPassword = "storeowner";
+
+        if (inputPassword != correctUsername &&
+            inputPassword != correctPassword)
+        {
+            return false;
+        }
+
+        return true;
+    }
 } 

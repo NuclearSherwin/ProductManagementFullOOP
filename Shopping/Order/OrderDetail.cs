@@ -22,7 +22,8 @@ public class OrderDetail
     
     public override string ToString()
     {
-        return base.ToString();
+        return $"Product ID {Product.ProductId}, Product name {Product.Name} " +
+               $"Price {Product.Price}, Product category {Product.Category}";
     }
 }
 
