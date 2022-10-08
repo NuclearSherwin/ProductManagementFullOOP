@@ -75,15 +75,30 @@ public class Purchase
     //     OrderDetail orderDetails = new OrderDetail(id);
     //     _orderDetails.Add(orderDetails);
     // }
-
+    
+    
+    // add orderDetail
+    internal void AddOrderDetail(OrderDetail orderDetail)
+    {
+        OrderDetailsList.Add(orderDetail);
+    }
+    
+    // show order details
     public string showOrderDetails()
     {
-        return "Order ID: " + Id + "Client " + _client.Name + 
-               "PurchaseDate " + purchaseDate;
+        string stringToChain = " ";
+        foreach (var orderDetail in OrderDetailsList)
+        {
+            stringToChain += orderDetail.ToString();
+        }
+
+        return stringToChain;
+
     }
 
     public override string ToString()
     {
-        return base.ToString();
+        return "Order ID: " + Id + "Client " + _client.Name + 
+               "PurchaseDate " + purchaseDate;
     }
 }

@@ -67,20 +67,32 @@ public class Client : Person, ILogin
     // remove purchase
     public bool RemovePurchase(Purchase purchase)
     {
-        var purchaseInList = Purchases.FirstOrDefault(p => 
-            p.)
-    }
+        var purchaseInList = Purchases.FirstOrDefault(p =>
+            p.Id == purchase.Id);
+        if (purchaseInList == null)
+        {
+            Console.WriteLine("Purchase not found!");
+            return false;
+        }
 
-    // show all product
-    public string ShowAllPurchases()
-    {
-        return $"{_purchases}";
-    }
-
-    // remove purchase
-    public bool RemovePurchase()
-    {
+        Purchases.Remove(purchase);
         return true;
     }
-    
+
+    // show all products
+    public string ShowAllPurchases()
+    {
+        string stringToChain = "";
+        foreach (var purchase in Purchases)
+        {
+            stringToChain += purchase.ToString();
+        }
+        return stringToChain;
+    }
+
+    public override string ToString()
+    {
+        return "User ID: " + ClientId + "Name: "
+               + Name + "Address " + "Phone number: " +  Phone;
+    }
 }
