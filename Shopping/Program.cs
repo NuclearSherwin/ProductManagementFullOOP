@@ -32,7 +32,7 @@ public class Program
                     {
                         case 1:
                             do
-                            {
+                            { 
                                 Console.ForegroundColor = ConsoleColor.Cyan;
                                 Console.WriteLine("Login as store owner");
                                 Console.ForegroundColor = ConsoleColor.White;
@@ -99,6 +99,7 @@ public class Program
                                             case 3:
                                                 try
                                                 {
+                                                    Console.WriteLine("Enter product ID: ");
                                                     int idProductToUpdate = int.Parse(Console.ReadLine());
                                                     while (!store.searchProductById(idProductToUpdate))
                                                     {
@@ -108,9 +109,9 @@ public class Program
                                                         store.UpdateProductById(idProductToUpdate);
                                                     }
 
-                                                    string nameToUpdate = Console.ReadLine();
-                                                    string priceToUpdate = Console.ReadLine();
-                                                    string categoryUpdate = Console.ReadLine();
+                                                    // string nameToUpdate = UserInterface.EnterProductName();
+                                                    // double priceToUpdate = UserInterface.EnterProductPrice();
+                                                    // string categoryUpdate = UserInterface.EnterProductCategory();
 
                                                     store.UpdateProductById(idProductToUpdate);
                                                     Console.ForegroundColor = ConsoleColor.Green;
@@ -293,10 +294,31 @@ public class Program
                                                 }
                                                 break;
                                             case 4:
-                                                
+                                                int userId = UserInterface.EnterClientId();
+                                                var userInListPurchase = store.GetUserPurchaseProductById(userId);
+                                                Console.WriteLine(userInListPurchase.ToString());
+                                                int purchasedId = UserInterface.EnterPurchaseId();
+                                                var foundPurchase = userInListPurchase.searchPurchaseById(purchasedId);
+
+                                                foreach (var removeProductPurchase in foundPurchase.OrderDetailsList)
+                                                {
+                                                    removeProductPurchase.Product.RemoveOrderDetail(foundPurchase);
+                                                }
+
+                                                userInListPurchase.RemovePurchase(foundPurchase);
+                                                Console.WriteLine("Remove successfully");
+                                                UserInterface.MenuForUser();
                                                 break;
+                                            case 5:
+                                                goto MenuCommand;
                                         }
                                     } while (true);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("------------------------------");
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                    UserInterface.LoginMenu();
                                 }
 
                             } while (chosenNum != 3);
@@ -317,11 +339,6 @@ public class Program
                 Console.WriteLine("Error at: " + e.Message);
             }
             
-            
-        
-        
-        
-        
     //     // Create Login object
     //     Login loginServices = new Login();
     //     

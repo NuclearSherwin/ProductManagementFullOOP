@@ -152,7 +152,8 @@ public class Store : ILogin
     // update product by ID
     public void UpdateProductById(int id)
     {
-        var isExistID = _products.FirstOrDefault(p => p.ProductId == id);
+        var isExistID = Products.FirstOrDefault
+            (p => p.ProductId == id);
         
 
         if (isExistID == null)

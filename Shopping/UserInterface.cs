@@ -61,7 +61,7 @@ public class UserInterface
         Console.WriteLine("| Enter 1: Add a new user account");
         Console.WriteLine("| Enter 2: Show all products ");
         Console.WriteLine("| Enter 3: Purchase a product ");
-        Console.WriteLine("| Enter 4: delete a purchase");
+        Console.WriteLine("| Enter 4: delete a purchase in cart");
         Console.WriteLine("| Enter 5: Logout");
         Console.WriteLine();
         Console.WriteLine("Enter your options here: ");
@@ -126,4 +126,5 @@ public class UserInterface
         Console.WriteLine("Enter quantity: ");
         return int.Parse(Console.ReadLine());
     }
+    
 }

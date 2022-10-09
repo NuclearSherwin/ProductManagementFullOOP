@@ -96,4 +96,11 @@ public class Client : Person, ILogin
                + Name + "Address " + "Phone number: " +  Phone;
     }
     
+    // search id of purchase
+    public Purchase searchPurchaseById(int id)
+    {
+        var purchasedInList = Purchases.FirstOrDefault(p => p.Id == id);
+        return purchasedInList;
+    }
+    
 }
