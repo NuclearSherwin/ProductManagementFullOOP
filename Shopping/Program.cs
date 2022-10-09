@@ -59,14 +59,13 @@ public class Program
                                                 {
                                                     productId = UserInterface.EnterProductId();
                                                     // check if ID for if exist
-                                                    while (store.searchProductById(productId))
+                                                    while (store.checkProductId(productId))
                                                     {
                                                         UserInterface.DialogIdExisted();
                                                         productId = UserInterface.EnterProductId();
                                                     }
 
                                                     // rest of fields
-
                                                     string productName = UserInterface.EnterProductName();
                                                     double productPrice = UserInterface.EnterProductPrice();
                                                     string productCategory = UserInterface.EnterProductCategory();
@@ -76,8 +75,10 @@ public class Program
                                                         productCategory));
 
                                                     // add successfully
-                                                    UserInterface.ModifySuccessfully();
                                                     Console.ForegroundColor = ConsoleColor.Green;
+                                                    UserInterface.ModifySuccessfully();
+                                                    Console.ForegroundColor = ConsoleColor.White;
+                                                    
 
                                                     // repeat menu of store owner
                                                     UserInterface.MenuForStoreOwner();
@@ -93,7 +94,14 @@ public class Program
 
                                                 break;
                                             case 2:
-                                                store.ShowProducts();
+                                                // store.ShowProducts();
+                                                // UserInterface.MenuForStoreOwner();
+                                                foreach (var product in store.Products)
+                                                {
+                                                    Console.ForegroundColor = ConsoleColor.Yellow;
+                                                    Console.WriteLine(product.ToString());
+                                                    Console.ForegroundColor = ConsoleColor.White;
+                                                }
                                                 UserInterface.MenuForStoreOwner();
                                                 break;
                                             case 3:
@@ -101,7 +109,7 @@ public class Program
                                                 {
                                                     Console.WriteLine("Enter product ID: ");
                                                     int idProductToUpdate = int.Parse(Console.ReadLine());
-                                                    while (!store.searchProductById(idProductToUpdate))
+                                                    while (!store.checkProductId(idProductToUpdate))
                                                     {
                                                         Console.ForegroundColor = ConsoleColor.Red;
                                                         UserInterface.ModifyFailed();
@@ -114,9 +122,10 @@ public class Program
                                                     // string categoryUpdate = UserInterface.EnterProductCategory();
 
                                                     store.UpdateProductById(idProductToUpdate);
+                                                    
                                                     Console.ForegroundColor = ConsoleColor.Green;
                                                     UserInterface.ModifySuccessfully();
-                                                    UserInterface.MenuForStoreOwner();
+                                                    Console.ForegroundColor = ConsoleColor.White;
 
                                                     // enter menu again
                                                     UserInterface.MenuForStoreOwner();
@@ -134,8 +143,8 @@ public class Program
                                             case 4:
                                                 try
                                                 {
-                                                    int idToDelete = UserInterface.EnterProductId();
-                                                    while (!store.searchProductById(idToDelete))
+                                                    int idToDelete = UserInterface.EnterProductIdToDelete();
+                                                    while (!store.checkProductId(idToDelete))
                                                     {
                                                         Console.ForegroundColor = ConsoleColor.Red;
                                                         UserInterface.ModifyFailed();
@@ -161,22 +170,33 @@ public class Program
 
                                                 break;
                                             case 5:
-                                                foreach (var product in store.Products)
-                                                {
-                                                    Console.WriteLine(product.ToString());
-                                                }
-
+                                                int idToUpdate = UserInterface.EnterExistProductId();
+                                                store.searchProductById(idToUpdate);
                                                 UserInterface.MenuForStoreOwner();
                                                 break;
                                             case 6:
-
-                                                int idToSearchPurchase = UserInterface.EnterProductId();
-                                                var userInListPurchaes =
-                                                    store.GetUserPurchaseProductById(idToSearchPurchase);
-                                                Console.WriteLine(userInListPurchaes.ToString());
+                                                string nameToSearch = UserInterface.EnterProductName();
+                                                store.searchProductByName(nameToSearch);
                                                 UserInterface.MenuForStoreOwner();
                                                 break;
                                             case 7:
+                                                // show all user that already have been purchased products
+                                                foreach (var user in store.Clients)
+                                                {
+                                                    Console.WriteLine(user.ToString());
+                                                }
+                                                UserInterface.MenuForStoreOwner();
+                                                break;
+                                            case 8:
+                                                int idToSearchPurchase = UserInterface.EnterClientId();
+                                                var userInListPurchase =
+                                                    store.GetUserPurchaseProductById(idToSearchPurchase);
+                                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                                Console.WriteLine(userInListPurchase.ToString());
+                                                Console.ForegroundColor = ConsoleColor.White;
+                                                UserInterface.MenuForStoreOwner();
+                                                break;
+                                            case 9:
                                                 goto MenuCommand;
                                                 break;
                                         }
@@ -199,16 +219,15 @@ public class Program
                             {
                                 Console.ForegroundColor = ConsoleColor.Cyan;
                                 Console.WriteLine("Login as user");
-                                Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.WriteLine("Enter username");
-                                string username = Console.ReadLine();
-                                Console.WriteLine("Enter password");
-                                string password = Console.ReadLine();
+                                Console.ForegroundColor = ConsoleColor.White;
+                                
+                                string username = UserInterface.EnterUserName();
+                                string password = UserInterface.EnterUserPassword();
                                 
                                 // call login function
                                 client.Login(username, password);
 
-                                if (store.Login(username, password))
+                                if (client.Login(username, password))
                                 {
                                     Console.WriteLine("-----------------------------");
                                     Console.ForegroundColor = ConsoleColor.Green;
@@ -217,11 +236,14 @@ public class Program
                                     UserInterface.MenuForUser();
                                     do
                                     {
-                                        int choseNum = int.Parse(Console.ReadLine());
-                                        switch (chosenNum)
+                                        int inputNum = int.Parse(Console.ReadLine());
+                                        switch (inputNum)
                                         {
                                             case 1:
                                                 store.AddUser();
+                                                Console.ForegroundColor = ConsoleColor.Green;
+                                                Console.WriteLine("Add account successfully!");
+                                                Console.ForegroundColor = ConsoleColor.White;
                                                 UserInterface.MenuForUser();
                                                 break;
                                             case 2:
@@ -234,9 +256,10 @@ public class Program
                                                 {
                                                 // first enter user id and check that id must be exist so that ID can purchase product
                                                 int purchaseId = UserInterface.EnterPurchaseId();
-                                                Console.WriteLine("Enter user ID user: ");
+                                                
                                                 Client newClient = new Client();
                                                 newClient.ClientId = UserInterface.EnterClientId();
+                                                
                                                 while (!store.SearchUserById(newClient.ClientId))
                                                 {
                                                     Console.ForegroundColor = ConsoleColor.Red;
@@ -254,13 +277,14 @@ public class Program
                                                 
                                                 // then add to list
                                                 userInList.AddPurchase(productPurchase);
+                                                
                                                 Console.WriteLine("Quantity of product: ");
                                                 int productQuantity = int.Parse(Console.ReadLine());
                                                 for (int i = 0; i < productQuantity; i++)
                                                 {
                                                     Product product = new Product();
                                                     product.ProductId = UserInterface.EnterProductId();
-                                                    while (!store.searchProductById(product.ProductId))
+                                                    while (!store.checkProductId(product.ProductId))
                                                     {
                                                         Console.ForegroundColor = ConsoleColor.Red;
                                                         Console.WriteLine("ID of purchase does not exist!");
@@ -278,6 +302,7 @@ public class Program
                                                             productPurchase, UserInterface.EnterQuantity());
                                                     productPurchase.AddOrderDetail(orderDetail);
                                                     productInList.AddOrderDetail(orderDetail);
+                                                    
                                                     Console.ForegroundColor = ConsoleColor.Green;
                                                     UserInterface.ModifySuccessfully();
                                                     Console.ForegroundColor = ConsoleColor.White;
@@ -316,7 +341,8 @@ public class Program
                                 }
                                 else
                                 {
-                                    Console.WriteLine("------------------------------");
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Username or password incorrect!");
                                     Console.ForegroundColor = ConsoleColor.White;
                                     UserInterface.LoginMenu();
                                 }

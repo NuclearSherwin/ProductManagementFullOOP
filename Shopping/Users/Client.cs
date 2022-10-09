@@ -38,15 +38,23 @@ public class Client : Person, ILogin
     // create user account
     public override void InputInformation()
     {
-        this.ClientId = UserInterface.EnterUserName();
-        this.Name = UserInterface.EnterUserEmail();
-        this.Phone = UserInterface.EnterUserPhoneNum();
+        try
+        {
+            // this.ClientId = UserInterface.EnterClientId();
+            this.Name = UserInterface.EnterUserEmail();
+            this.Phone = UserInterface.EnterUserPhoneNum();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            throw;
+        }
     }
 
     public bool Login(string inputUsername, string inputPassword)
     {
-        string correctUsername = "User";
-        string correctPassword = "User";
+        string correctUsername = "user";
+        string correctPassword = "user";
         
         // check weather username and password is correct
         if (inputUsername != correctUsername &&
@@ -92,8 +100,8 @@ public class Client : Person, ILogin
 
     public override string ToString()
     {
-        return "User ID: " + ClientId + "Name: "
-               + Name + "Address " + "Phone number: " +  Phone;
+        return "User ID: " + ClientId + " Name: "
+               + Name + " Address " + " Phone number: " +  Phone;
     }
     
     // search id of purchase

@@ -5,10 +5,10 @@ namespace Shopping;
 public class UserInterface
 {
     // for user info
-    public static int EnterUserName()
+    public static string EnterUserName()
     {
-        Console.WriteLine("Enter user name: ");
-        return Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Enter username: ");
+        return Console.ReadLine();
     }
 
     public static string EnterUserEmail()
@@ -28,7 +28,12 @@ public class UserInterface
         Console.WriteLine("Enter user ID: ");
         return int.Parse(Console.ReadLine());
     }
-    
+
+    public static string EnterUserPassword()
+    {
+        Console.WriteLine("Enter password: ");
+        return Console.ReadLine();
+    }
     
     
     // for login
@@ -50,7 +55,9 @@ public class UserInterface
         Console.WriteLine("| Enter 4: Delete product");
         Console.WriteLine("| Enter 5: Search id of product");
         Console.WriteLine("| Enter 6: Search name of product");
-        Console.WriteLine("| Enter 7: Logout");
+        Console.WriteLine("| Enter 7: View all user");
+        Console.WriteLine("| Enter 8: Search product has been purchase");
+        Console.WriteLine("| Enter 9: Logout");
         Console.WriteLine();
         Console.WriteLine("Enter your options here: ");
     }
@@ -71,7 +78,13 @@ public class UserInterface
     // UI for product
     public static int EnterProductId()
     {
-        Console.WriteLine("Enter new product ID: ");
+        Console.WriteLine("Enter product ID: ");
+        return int.Parse(Console.ReadLine());
+    }
+
+    public static int EnterProductIdToDelete()
+    {
+        Console.WriteLine("Enter product ID: ");
         return int.Parse(Console.ReadLine());
     }
 
@@ -83,7 +96,7 @@ public class UserInterface
 
     public static string EnterProductName()
     {
-        Console.WriteLine("Enter productName");
+        Console.WriteLine("Enter name of product: ");
         return Console.ReadLine();
     }
 
@@ -92,8 +105,14 @@ public class UserInterface
         Console.WriteLine("Enter category of product: ");
         return Console.ReadLine();
     }
-    
-    
+
+    public static int EnterExistProductId()
+    {
+        Console.WriteLine("Enter the ID of product: ");
+        return int.Parse(Console.ReadLine());
+    } 
+
+
     // show error
     public static string DialogIdExisted()
     {
@@ -117,7 +136,7 @@ public class UserInterface
     // for purchase product
     public static int EnterPurchaseId()
     {
-        Console.WriteLine("Enter new Id: ");
+        Console.WriteLine("Enter purchase Id: ");
         return int.Parse(Console.ReadLine());
     }
 

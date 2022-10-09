@@ -97,22 +97,45 @@ public class Store : ILogin
     //     return true;
     // }
 
-
-    // search product by ID
-    public bool searchProductById(int id)
+    
+    
+    // check product ID
+    public bool checkProductId(int id)
     {
-        // var productInList = from p in
-        //         Products
-        //     where p.ProductId == id
-        //     select p;
-
-        var productInList = Products.FirstOrDefault(p => p.ProductId == id);
-        if (productInList == null)
+        var productId = Products.FirstOrDefault(p => p.ProductId == id);
+        if (productId == null)
         {
             return false;
         }
 
         return true;
+    }
+
+    // search product by ID
+    public void searchProductById(int id)
+    {
+        var products = from p in
+                Products
+            where p.ProductId == id
+            select p;
+        
+        if (products == null)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Not found");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        foreach (var product in products)
+        { 
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"Id of product: {product.ProductId}");
+            Console.WriteLine($"Id of product: {product.Name}");
+            Console.WriteLine($"Id of product: {product.Price}");
+            Console.WriteLine($"Id of product: {product.Category}");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        Console.ForegroundColor = ConsoleColor.White;
 
         // if (productInList == null)
         // {
@@ -142,10 +165,12 @@ public class Store : ILogin
 
         foreach (var product in products)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"Id of product: {product.ProductId}");
             Console.WriteLine($"Id of product: {product.Name}");
             Console.WriteLine($"Id of product: {product.Price}");
             Console.WriteLine($"Id of product: {product.Category}");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 
@@ -183,14 +208,18 @@ public class Store : ILogin
         var isExistID = _products.FirstOrDefault(p =>p.ProductId == id);
         if (isExistID == null)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Not Found");
+            Console.ForegroundColor = ConsoleColor.White;
         }
         else
         {
             _products.Remove(_products.Where(
                 p => p.ProductId == id).First());
 
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Delete product successfully!");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
     
@@ -217,6 +246,7 @@ public class Store : ILogin
 
         return true;
     }
+    
     
     
     // add a new user
@@ -267,4 +297,5 @@ public class Store : ILogin
 
         return productInList;
     }
+    
 } 
