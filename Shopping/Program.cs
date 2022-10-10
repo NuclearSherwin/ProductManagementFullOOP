@@ -180,10 +180,15 @@ public class Program
                                                 UserInterface.MenuForStoreOwner();
                                                 break;
                                             case 7:
-                                                // show all user that already have been purchased products
-                                                foreach (var user in store.Clients)
+                                                // show order details
+                                                Console.WriteLine("Order details: ");
+                                                foreach (var orderDetail in store.OrderDetails)
                                                 {
-                                                    Console.WriteLine(user.ToString());
+                                                    
+                                                    Console.WriteLine();
+                                                    Console.WriteLine($"{orderDetail.Product.ProductId}");
+                                                    Console.WriteLine($"{orderDetail.Purchase.Client.ClientId}");
+                                                    Console.WriteLine($"{orderDetail.Quantity}");
                                                 }
                                                 UserInterface.MenuForStoreOwner();
                                                 break;

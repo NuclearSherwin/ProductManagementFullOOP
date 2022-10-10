@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using Shopping.Order;
 using Shopping.Users;
 
 namespace Shopping.Products;
@@ -6,11 +7,18 @@ namespace Shopping.Products;
 public class Store : ILogin
 {
     // fields
-    public int Id { get; set; }
+    private int id;
     private List<Product> _products = new List<Product>();
     private List<Client> _clients = new List<Client>();
-    
+
+    private List<OrderDetail> _orderDetails = new List<OrderDetail>();   
     // get and set methods
+    public int Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+    
     public List<Product> Products
     {
         get { return _products; }
@@ -22,6 +30,13 @@ public class Store : ILogin
         get => _clients;
         set => _clients = value;
     }
+
+    public List<OrderDetail> OrderDetails
+    {
+        get { return _orderDetails; }
+        set { _orderDetails = value; }
+    }
+    
 
     // constructors
     public Store(int id)

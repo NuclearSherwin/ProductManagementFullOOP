@@ -12,11 +12,17 @@ public class OrderDetail
     
     private List<Product> _products = new List<Product>();
     
+    // constructors
     public OrderDetail(Product product, Purchase purchase, int quantity)
     {
         Product = product;
         Purchase = purchase;
         Quantity = quantity;
+    }
+
+    public OrderDetail()
+    {
+        
     }
     
     
