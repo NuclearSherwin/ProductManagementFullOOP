@@ -11,7 +11,7 @@ public class Product
     private string name;
     private double price;
     private string category;
-    private List<OrderDetail> _orderDetails = new List<OrderDetail>();
+    private List<OrderDetail> orderDetails = new List<OrderDetail>();
     
     
     // constructor
@@ -66,11 +66,11 @@ public class Product
     {
         get
         {
-            return _orderDetails;
+            return orderDetails;
         }
         set
         {
-            _orderDetails = value;
+            orderDetails = value;
         }
     }
     

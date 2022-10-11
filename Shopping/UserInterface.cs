@@ -43,7 +43,6 @@ public class UserInterface
         Console.WriteLine("1. Login as store owner");
         Console.WriteLine("2. Login as user");
         Console.WriteLine("Enter your number: ");
-        Console.WriteLine();
     }
 
     public static void MenuForStoreOwner()
@@ -120,9 +119,15 @@ public class UserInterface
     }
     
     // modify message successfully!
-    public static string ModifySuccessfully()
+    public static void ModifySuccessfully()
     {
-        return "Modify data successfully!";
+        Console.WriteLine("Modify data successfully!");;
+    }
+    
+    //  bought product successfully
+    public static void BoughtSuccessfully()
+    {
+        Console.WriteLine("Bought product successfully!");
     }
     
     // modify message fail!

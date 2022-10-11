@@ -5,16 +5,22 @@ namespace Shopping.Users;
 
 public class Client : Person, ILogin
 {
-    public int ClientId { get; set; }
-    private List<Purchase> _purchases = new List<Purchase>();
+    public int clientId { get; set; }
+    private List<Purchase> purchases = new List<Purchase>();
     
     // get and set method
     public List<Purchase> Purchases
     {
-        get { return _purchases;  }
-        set { _purchases = value; }
+        get { return purchases;  }
+        set { purchases = value; }
     }
 
+    public int ClientId
+    {
+        get { return clientId; }
+        set { clientId = value; }
+    }
+    
     // constructors
     public Client(int clientId)
     {

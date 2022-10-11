@@ -5,13 +5,30 @@ namespace Shopping.Order;
 
 public class OrderDetail
 {
-    public Product Product { get; set; }
-    public Purchase Purchase { get; set; }
+    private Product product;
+    private Purchase purchase;
+    private int quanity;
+
+    // get and set methods
+
+    public Product Product
+    {
+        get { return product;}
+        set { product = value; }
+    }
+    public Purchase Purchase
+    {
+        get { return purchase; }
+        set { purchase = value; }
+    }
+
+    public int Quantity
+    {
+        get { return quanity; }
+        set { quanity = value; }
+    }
     
-    public int Quantity { get; set; }
-    
-    private List<Product> _products = new List<Product>();
-    
+     
     // constructors
     public OrderDetail(Product product, Purchase purchase, int quantity)
     {
@@ -24,7 +41,6 @@ public class OrderDetail
     {
         
     }
-    
     
     
     public override string ToString()

@@ -8,10 +8,10 @@ public class Store : ILogin
 {
     // fields
     private int id;
-    private List<Product> _products = new List<Product>();
-    private List<Client> _clients = new List<Client>();
+    private List<Product> products = new List<Product>();
+    private List<Client> clients = new List<Client>();
 
-    private List<OrderDetail> _orderDetails = new List<OrderDetail>();   
+    private List<OrderDetail> orderDetails = new List<OrderDetail>();   
     // get and set methods
     public int Id
     {
@@ -21,20 +21,20 @@ public class Store : ILogin
     
     public List<Product> Products
     {
-        get { return _products; }
-        set { _products = value; }
+        get { return products; }
+        set { products = value; }
     }
     
     public List<Client> Clients
     {
-        get => _clients;
-        set => _clients = value;
+        get => clients;
+        set => clients = value;
     }
 
     public List<OrderDetail> OrderDetails
     {
-        get { return _orderDetails; }
-        set { _orderDetails = value; }
+        get { return orderDetails; }
+        set { orderDetails = value; }
     }
     
 
@@ -89,7 +89,7 @@ public class Store : ILogin
     public void ShowProducts()
     {
         Console.WriteLine("List of products: ");
-        foreach (var product in _products)
+        foreach (var product in Products)
         {
             Console.WriteLine($"Id of product: {product.ProductId}");
             Console.WriteLine($"Name of product: {product.Name}");
@@ -203,13 +203,13 @@ public class Store : ILogin
         else
         {
             Console.WriteLine("Enter product name");
-            _products.FirstOrDefault(p => p.ProductId
+            products.FirstOrDefault(p => p.ProductId
                                           == id).Name = Console.ReadLine();
             Console.WriteLine("Enter product price price");
-            _products.FirstOrDefault(p => p.ProductId
+            products.FirstOrDefault(p => p.ProductId
                                           == id).Price = double.Parse(Console.ReadLine());
             Console.WriteLine("Enter product category");
-            _products.FirstOrDefault(p => p.ProductId
+            products.FirstOrDefault(p => p.ProductId
                                           == id).Category = Console.ReadLine();
             Console.WriteLine("Update successfully!");
         }
@@ -220,7 +220,7 @@ public class Store : ILogin
     // delete product
     public void DeleteProduct(int id)
     {
-        var isExistID = _products.FirstOrDefault(p =>p.ProductId == id);
+        var isExistID = products.FirstOrDefault(p =>p.ProductId == id);
         if (isExistID == null)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -229,7 +229,7 @@ public class Store : ILogin
         }
         else
         {
-            _products.Remove(_products.Where(
+            products.Remove(products.Where(
                 p => p.ProductId == id).First());
 
             Console.ForegroundColor = ConsoleColor.Green;
@@ -247,7 +247,6 @@ public class Store : ILogin
     }
     
     // login
-
     public bool Login(string inputUsername, string inputPassword)
     {
         string correctUsername = "storeowner";
@@ -313,4 +312,23 @@ public class Store : ILogin
         return productInList;
     }
     
+    // show all order detail
+    public void ShowAllOrderDetails()
+    {
+        Console.WriteLine("List of order details: ");
+        foreach (var orderDetail in OrderDetails)
+        {
+            Console.WriteLine($"Product id: {orderDetail.Product.ProductId}");
+            Console.WriteLine($"User purchased: {orderDetail.Purchase.Client.clientId}");
+            Console.WriteLine($"Quantity: {orderDetail.Quantity}");
+        }
+    }
+    
+    // get user bought products by ID
+    public Client GetUserPurchaseById(int idUserToSearch)
+    {
+        var studentInList = Clients.FirstOrDefault(u => u.clientId == idUserToSearch);
+        return studentInList;
+    }
+
 } 

@@ -7,10 +7,10 @@ public class Purchase
 {
     // fields
     private int id { get; set; }
-    private Client _client;
+    private Client client;
     private DateTime purchaseDate;
 
-    private List<OrderDetail> _orderDetails = new List<OrderDetail>();
+    private List<OrderDetail> orderDetails = new List<OrderDetail>();
     
     // get and set method
     public int Id
@@ -26,11 +26,11 @@ public class Purchase
     {
         get
         {
-            return _orderDetails;
+            return orderDetails;
         }
         set
         {
-            _orderDetails = value;
+            orderDetails = value;
         }
     }
 
@@ -50,11 +50,11 @@ public class Purchase
     {
         get
         {
-            return _client;
+            return client;
         }
         set
         {
-            _client = value;
+            client = value;
         }
     }
 
@@ -98,7 +98,7 @@ public class Purchase
 
     public override string ToString()
     {
-        return "Order ID: " + Id + "Client " + _client.Name + 
+        return "Order ID: " + Id + "Client " + client.Name + 
                "PurchaseDate " + purchaseDate;
     }
 }
