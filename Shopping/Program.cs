@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Design;
+﻿using System.Collections;
+using System.ComponentModel.Design;
 using Shopping;
 using Shopping.Order;
 using Shopping.Products;
@@ -8,33 +9,30 @@ public class Program
 {
     // for answer at the end of app
     private static char anwser;
-    // check isLogin
+    // check isLogin or not
     public static bool isLogin = false;
     
     
     // store owner, client, orderDetail
     private static Store store = new Store();
     private static Client client = new Client();
-
+    private static Purchase purchase = new Purchase();
 
     public static void Main(string[] args)
     {
         Console.WriteLine("======================Shopping======================");
         Console.WriteLine();
-        
         MenuCommand:
-        
-            
             do
             { 
                 try
                 {
+                        // LOGIN MENU
                         UserInterface.LoginMenu();
                         int chosenNum = int.Parse(Console.ReadLine());
                         switch (chosenNum)
                         {
                         case 1:
-                            // menu of storeowner
                             do
                             { 
                                 Console.ForegroundColor = ConsoleColor.Cyan;
@@ -185,18 +183,18 @@ public class Program
                                                 break;
                                             case 7:
                                                 // show order details of user bought
-                                                store.ShowAllOrderDetails();
+                                                purchase.showOrderDetails();
                                                 UserInterface.MenuForStoreOwner();
                                                 break;
-                                            case 8:
-                                                int idToSearchPurchase = UserInterface.EnterClientId();
-                                                var userInListPurchase =
-                                                    store.GetUserPurchaseProductById(idToSearchPurchase);
-                                                Console.ForegroundColor = ConsoleColor.Yellow;
-                                                Console.WriteLine(userInListPurchase.ToString());
-                                                Console.ForegroundColor = ConsoleColor.White;
-                                                UserInterface.MenuForStoreOwner();
-                                                break;
+                                            // case 8:
+                                            //     int idToSearchPurchase = UserInterface.EnterClientId();
+                                            //     var userInListPurchase =
+                                            //         store.GetUserPurchaseProductById(idToSearchPurchase);
+                                            //     Console.ForegroundColor = ConsoleColor.Yellow;
+                                            //     Console.WriteLine(userInListPurchase.ToString());
+                                            //     Console.ForegroundColor = ConsoleColor.White;
+                                            //     UserInterface.MenuForStoreOwner();
+                                            //     break;
                                             case 9:
                                                 goto MenuCommand;
                                                 break;
@@ -260,8 +258,8 @@ public class Program
                                                 try
                                                 { 
                                                     int purchaseId = UserInterface.EnterPurchaseId();
-                                                
-                                                Client newClient = new Client();
+
+                                                    Client newClient = new Client();
                                                 newClient.ClientId = UserInterface.EnterClientId();
                                                 
                                                 while (!store.SearchUserById(newClient.ClientId))
@@ -273,14 +271,16 @@ public class Program
                                                 }
                                                 
                                                 // then create to purchase
-                                                Client userInList = store.searchUserWithObjType(newClient.ClientId);
+                                                Client objectUser = store.searchUserWithObjType(newClient.ClientId);
+                                                
                                                 DateTime purchaseDate = DateTime.Now;
+                                                
                                                 Purchase productPurchase =
-                                                    new Purchase(purchaseId, userInList, purchaseDate);
+                                                    new Purchase(purchaseId, objectUser, purchaseDate);
                                                
                                                 
                                                 // then add to list
-                                                userInList.AddPurchase(productPurchase);
+                                                client.AddPurchase(productPurchase);
                                                 
                                                 Console.WriteLine("Quantity of the product: ");
                                                 int productQuantity = int.Parse(Console.ReadLine());
@@ -299,7 +299,9 @@ public class Program
                                                     Product productInList =
                                                         store.searchProductWithObjType(product.ProductId);
                                                     // display product info before buy for user
+                                                    Console.ForegroundColor = ConsoleColor.Yellow;
                                                     Console.WriteLine(productInList.ToString());
+                                                    Console.ForegroundColor = ConsoleColor.White;
                                                     
                                                     // Finally add to order detail
                                                     int quantity = UserInterface.EnterQuantity();
@@ -308,8 +310,10 @@ public class Program
                                                         new OrderDetail(productInList, 
                                                             productPurchase, quantity);
 
-                                                    productPurchase.AddOrderDetail(orderDetail);
-                                                    productInList.AddOrderDetail(orderDetail);
+                                                    // productPurchase.AddOrderDetail(orderDetail);
+                                                    // productInList.AddOrderDetail(orderDetail);
+                                                    
+                                                    purchase.AddOrderDetail(orderDetail);
                                                     
                                                     Console.ForegroundColor = ConsoleColor.Green;
                                                     UserInterface.BoughtSuccessfully();
@@ -367,7 +371,7 @@ public class Program
                             break;
                     }
                         
-                    }
+                }
                 catch (FormatException e)
                 {
                     Console.WriteLine("Please enter right format number: " + e.Message);
@@ -377,81 +381,10 @@ public class Program
                     Console.WriteLine("Error at: " + e.Message);
                 }
 
-                    // verify continue
-                    Console.WriteLine("Would you like to continue: (Y/N): ");
-                    anwser = char.Parse(Console.ReadLine());
-                } while (anwser == 'Y' || anwser =='y');
-            
-
-            //     // Create Login object
-    //     Login loginServices = new Login();
-    //     
-    //     
-    //     do
-    //     {
-    //         // area for cookie already login
-    //         // if you already login, then don't need to login again
-    //         if (isLogin == true)
-    //         {
-    //             Console.Clear();
-    //             loginServices.LoginUiForStoreOwner();
-    //         }
-    //         else
-    //         {
-    //             Console.Clear();
-    //         
-    //             // Login UI
-    //             LoginUserInterface();
-    //
-    //             Console.Write("Enter your choice: ");
-    //             string chosenNum = Console.ReadLine();
-    //
-    //             switch (chosenNum)
-    //             {
-    //                 case "1":
-    //                     Console.WriteLine("Enter username:");
-    //                     string username = Console.ReadLine();
-    //                     Console.WriteLine("Enter password:");
-    //                     string password = Console.ReadLine();
-    //                     loginServices.LoginAsUser(username, password);
-    //                     
-    //
-    //                     break;
-    //                 case "2":
-    //                     Console.WriteLine("Enter username:");
-    //                     string storeName = Console.ReadLine();
-    //                     Console.WriteLine("Enter password:");
-    //                     string storePassword = Console.ReadLine();
-    //                     loginServices.LoginAsStoreOwner(storeName, storePassword);
-    //                     
-    //                     break;
-    //         
-    //           
-    //                 default:
-    //                     Console.WriteLine("Invalid choice!  please enter again!");
-    //                     break;
-    //             }
-    //         }
-    //         
-    //     
-    //         // verify continue or not
-    //         Console.WriteLine();
-    //     Console.Write("Would you like to continue(Y/N): ");
-    //     anwser = Convert.ToChar(Console.ReadLine());
-    //     } while (anwser == 'y' || anwser == 'Y');
-    //
-    //     Console.WriteLine("Bye bye!");
-    // }
-    //
-    //
-    // // login user interface
-    // public static void LoginUserInterface()
-    // {
-    //     Console.WriteLine();
-    //     Console.WriteLine("| Enter 1: Login as a client (user)");
-    //     Console.WriteLine("| Enter 2: Login as a store owner");
-    //     Console.WriteLine();
-    //     Console.Write("Please enter your choice: ");
+                // verify continue
+                Console.WriteLine("Would you like to continue: (Y/N): ");
+                anwser = char.Parse(Console.ReadLine());
+            } while (anwser == 'Y' || anwser =='y');
     }
 
 }

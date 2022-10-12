@@ -55,8 +55,7 @@ public class UserInterface
         Console.WriteLine("| Enter 5: Search id of product");
         Console.WriteLine("| Enter 6: Search name of product");
         Console.WriteLine("| Enter 7: View all orders");
-        Console.WriteLine("| Enter 8: Search product has been purchase");
-        Console.WriteLine("| Enter 9: Logout");
+        Console.WriteLine("| Enter 8: Logout");
         Console.WriteLine();
         Console.WriteLine("Enter your options here: ");
     }

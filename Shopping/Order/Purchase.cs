@@ -9,10 +9,9 @@ public class Purchase
     private int id { get; set; }
     private Client client;
     private DateTime purchaseDate;
-
     private List<OrderDetail> orderDetails = new List<OrderDetail>();
     
-    // get and set method
+    // get and set methods
     public int Id
     {
         get
@@ -58,6 +57,7 @@ public class Purchase
         }
     }
 
+    // constructors
     public Purchase(int id, Client client, DateTime purchaseDate)
     {
         Id = id;
@@ -65,37 +65,38 @@ public class Purchase
         PurchaseDate = purchaseDate;
     }
 
-
-
-    // public void addOrderDetail(int input)
-    // {
-    //     int id;
-    //     Console.WriteLine("enter orderDetail");
-    //     id = int.Parse(Console.ReadLine());
-    //     OrderDetail orderDetails = new OrderDetail(id);
-    //     _orderDetails.Add(orderDetails);
-    // }
+    public Purchase()
+    {
+        
+    }
     
     
+
     // add orderDetail
-    internal void AddOrderDetail(OrderDetail orderDetail)
+    public void AddOrderDetail(OrderDetail orderDetail)
     {
         OrderDetailsList.Add(orderDetail);
     }
     
-    // show order details
-    public string showOrderDetails()
+    // show all order details
+    public void showOrderDetails()
     {
-        string stringToChain = " ";
+        Console.WriteLine("Order detail list: ");
+        Console.ForegroundColor = ConsoleColor.Yellow;
         foreach (var orderDetail in OrderDetailsList)
         {
-            stringToChain += orderDetail.ToString();
+            Console.WriteLine($"Quantity {orderDetail.Purchase.Client.clientId}");
+            Console.WriteLine($"Username: {orderDetail.Purchase.Client.Name}");
+            Console.WriteLine($"Product Id: {orderDetail.Product.ProductId}");
+            Console.WriteLine($"Quantity {orderDetail.Quantity}");
         }
 
-        return stringToChain;
+        Console.WriteLine("-----------------------------------------------------");
+        Console.ForegroundColor = ConsoleColor.White;
 
     }
 
+    // to string
     public override string ToString()
     {
         return "Order ID: " + Id + "Client " + client.Name + 

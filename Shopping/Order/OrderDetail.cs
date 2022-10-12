@@ -10,7 +10,6 @@ public class OrderDetail
     private int quanity;
 
     // get and set methods
-
     public Product Product
     {
         get { return product;}

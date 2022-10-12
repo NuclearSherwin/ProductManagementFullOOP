@@ -10,8 +10,8 @@ public class Store : ILogin
     private int id;
     private List<Product> products = new List<Product>();
     private List<Client> clients = new List<Client>();
+    private List<OrderDetail> orderDetails = new List<OrderDetail>();
 
-    private List<OrderDetail> orderDetails = new List<OrderDetail>();   
     // get and set methods
     public int Id
     {
@@ -49,41 +49,11 @@ public class Store : ILogin
         
     }
     
-
     // add product to list
     public void AddProduct(Product product)
     {
         Products.Add(product);
     }
-    
-    
-    // public void AddProduct()
-    // {
-    //     int id;
-    //     string name;
-    //     double price;
-    //     string category;
-    //
-    //     try
-    //     {
-    //         Console.WriteLine("Enter id");
-    //         id = int.Parse(Console.ReadLine());
-    //         Console.WriteLine("Enter name");
-    //         name = Console.ReadLine();
-    //         Console.WriteLine("Enter price");
-    //         price = double.Parse(Console.ReadLine());
-    //         Console.WriteLine("Enter category");
-    //         category = Console.ReadLine();
-    //         Product product = new Product(id, name, price, category);
-    //         _products.Add(product);
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         Console.WriteLine("Error at " + e.Message);
-    //     }
-    //
-    //
-    // }
 
     // show all product
     public void ShowProducts()
@@ -99,21 +69,6 @@ public class Store : ILogin
         }
     }
 
-    // public Product SearchObjectProduct()
-    // {
-    //     return;
-    // }
-
-    // public bool SearchProductById(int productId)
-    // {
-    //     var productInList = _products.FirstOrDefault(p =>
-    //         p.ProductId.Equals(productId));
-    //     _products.Remove(productInList);
-    //     return true;
-    // }
-
-    
-    
     // check product ID
     public bool checkProductId(int id)
     {
@@ -151,22 +106,6 @@ public class Store : ILogin
             Console.ForegroundColor = ConsoleColor.White;
         }
         Console.ForegroundColor = ConsoleColor.White;
-
-        // if (productInList == null)
-        // {
-        //     Console.WriteLine("product not found!");
-        //     return false;
-        // }
-        //
-        // // foreach (var product in productInList)
-        // // {
-        // //     Console.WriteLine($"Id of product: {product.ProductId}");
-        // //     Console.WriteLine($"Id of product: {product.Name}");
-        // //     Console.WriteLine($"Id of product: {product.Price}");
-        // //     Console.WriteLine($"Id of product: {product.Category}");
-        // // }
-        // return true;
-
 
     }
     
@@ -246,6 +185,7 @@ public class Store : ILogin
         return userInList;
     }
     
+    
     // login
     public bool Login(string inputUsername, string inputPassword)
     {
@@ -260,9 +200,7 @@ public class Store : ILogin
 
         return true;
     }
-    
-    
-    
+
     // add a new user
     public void AddUser()
     {
