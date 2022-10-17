@@ -185,7 +185,7 @@ public class Program
                                             //     Console.ForegroundColor = ConsoleColor.White;
                                             //     UserInterface.MenuForStoreOwner();
                                             //     break;
-                                            case 9:
+                                            case 8:
                                                 goto MenuCommand;
                                                 break;
                                             default:

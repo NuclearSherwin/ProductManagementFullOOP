@@ -42,6 +42,7 @@ public class UserInterface
         Console.WriteLine();
         Console.WriteLine("1. Login as store owner");
         Console.WriteLine("2. Login as user");
+        Console.WriteLine("3. Exit");
         Console.WriteLine("Enter your number: ");
     }
 
