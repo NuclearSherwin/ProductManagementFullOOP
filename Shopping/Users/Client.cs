@@ -32,7 +32,8 @@ public class Client : Person, ILogin
         
     }
 
-    public Client(string name, int age, string address, string phone, int clientId) 
+    public Client(string name, int age, 
+        string address, string phone, int clientId) 
         : base(name, age, address, phone)
     {
         ClientId = clientId;
@@ -97,7 +98,8 @@ public class Client : Person, ILogin
     // search id of purchase
     public Purchase searchPurchaseById(int id)
     {
-        var purchasedInList = Purchases.FirstOrDefault(p => p.Id == id);
+        var purchasedInList = Purchases
+            .FirstOrDefault(p => p.Id == id);
         return purchasedInList;
     }
     

@@ -77,7 +77,7 @@ public class Program
 
                                                     // add successfully
                                                     Console.ForegroundColor = ConsoleColor.Green;
-                                                    UserInterface.ModifySuccessfully();
+                                                    Console.WriteLine("Add product successfully!");
                                                     Console.ForegroundColor = ConsoleColor.White;
                                                     
 
@@ -117,16 +117,9 @@ public class Program
                                                         Console.ForegroundColor = ConsoleColor.White;
                                                         store.UpdateProductById(idProductToUpdate);
                                                     }
-
-                                                    // string nameToUpdate = UserInterface.EnterProductName();
-                                                    // double priceToUpdate = UserInterface.EnterProductPrice();
-                                                    // string categoryUpdate = UserInterface.EnterProductCategory();
-
-                                                    store.UpdateProductById(idProductToUpdate);
                                                     
-                                                    Console.ForegroundColor = ConsoleColor.Green;
-                                                    UserInterface.ModifySuccessfully();
-                                                    Console.ForegroundColor = ConsoleColor.White;
+                                                    
+                                                    store.UpdateProductById(idProductToUpdate);
 
                                                     // enter menu again
                                                     UserInterface.MenuForStoreOwner();
@@ -153,11 +146,9 @@ public class Program
                                                         idToDelete = UserInterface.EnterProductId();
                                                     }
 
-                                                    /// delete product
+                                                    // delete product
                                                     store.DeleteProduct(idToDelete);
-                                                    Console.ForegroundColor = ConsoleColor.Green;
-                                                    UserInterface.ModifySuccessfully();
-                                                    Console.ForegroundColor = ConsoleColor.White;
+                                                    
                                                     UserInterface.MenuForStoreOwner();
                                                 }
                                                 catch (FormatException e)

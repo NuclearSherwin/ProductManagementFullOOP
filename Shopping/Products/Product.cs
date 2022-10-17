@@ -89,6 +89,7 @@ public class Product
     
     public override string ToString()
     {
-        return "Product ID: " + ProductId + " Product name: " + name + " Price: " + price + " Category: " + category;
+        return "Product ID: " + ProductId + " Product name: " + 
+               name + " Price: " + price + " Category: " + category;
     }
 }

@@ -15,7 +15,8 @@ public abstract class Person
         set
         {
             if (value.Length < 3)
-                throw new ArgumentException("Name length must be at lease 3 characters!");
+                throw new 
+                    ArgumentException("Name length must be at lease 3 characters!");
             name = value;
         }
     }
@@ -54,7 +55,8 @@ public abstract class Person
     }
     
     // constructors
-    public Person(string name, int age, string address, string phone)
+    public Person(string name, int age, 
+        string address, string phone)
     {
         this.Name = name;
         this.Age = age;

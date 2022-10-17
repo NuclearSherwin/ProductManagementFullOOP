@@ -141,16 +141,20 @@ public class Store : ILogin
         }
         else
         {
-            Console.WriteLine("Enter product name");
+            Console.WriteLine("Enter product name: ");
             products.FirstOrDefault(p => p.ProductId
-                                          == id).Name = Console.ReadLine();
-            Console.WriteLine("Enter product price price");
+                                         == id)!.Name = Console.ReadLine();
+            Console.WriteLine("Enter product price: ");
             products.FirstOrDefault(p => p.ProductId
-                                          == id).Price = double.Parse(Console.ReadLine());
-            Console.WriteLine("Enter product category");
+                                         == id)!.Price = double.Parse(Console.ReadLine());
+            Console.WriteLine("Enter product category: ");
             products.FirstOrDefault(p => p.ProductId
-                                          == id).Category = Console.ReadLine();
+                                         == id)!.Category = Console.ReadLine();
+            
+  
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Update successfully!");
+            Console.ForegroundColor = ConsoleColor.White;
         }
         
         
@@ -168,8 +172,7 @@ public class Store : ILogin
         }
         else
         {
-            products.Remove(products.Where(
-                p => p.ProductId == id).First());
+            products.Remove(products.First(p => p.ProductId == id));
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Delete product successfully!");
@@ -216,7 +219,8 @@ public class Store : ILogin
     // search user by ID
     public bool SearchUserById(int idUserToSearch)
     {
-        var userInList = Clients.FirstOrDefault(c => c.ClientId.Equals(idUserToSearch));
+        var userInList = Clients.FirstOrDefault(c => c.ClientId
+            .Equals(idUserToSearch));
         if (userInList == null)
         {
             return false;
@@ -228,7 +232,8 @@ public class Store : ILogin
     // search user object
     public Client searchUserWithObjType(int idUserToSearch)
     {
-        var userInList = Clients.FirstOrDefault(u => u.ClientId == idUserToSearch);
+        var userInList = Clients.FirstOrDefault(u => 
+            u.ClientId == idUserToSearch);
         if (userInList == null)
         {
             Console.WriteLine("Not found");
@@ -241,7 +246,8 @@ public class Store : ILogin
     // search product object
     public Product searchProductWithObjType(int idProductToSearch)
     {
-        var productInList = Products.FirstOrDefault(p => p.ProductId == idProductToSearch);
+        var productInList = Products.FirstOrDefault(p => 
+            p.ProductId == idProductToSearch);
         if (productInList == null)
         {
             Console.WriteLine("Not found!");
@@ -278,7 +284,8 @@ public class Store : ILogin
     // get user bought products by ID
     public Client GetUserPurchaseById(int idUserToSearch)
     {
-        var studentInList = Clients.FirstOrDefault(u => u.clientId == idUserToSearch);
+        var studentInList = Clients.FirstOrDefault(u => 
+            u.clientId == idUserToSearch);
         return studentInList;
     }
 
