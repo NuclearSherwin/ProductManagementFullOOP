@@ -93,28 +93,18 @@ public class Client : Person, ILogin
         return true;
     }
 
-    // show all products
-    public string ShowAllPurchases()
-    {
-        string stringToChain = "";
-        foreach (var purchase in Purchases)
-        {
-            stringToChain += purchase.ToString();
-        }
-        return stringToChain;
-    }
-
-    public override string ToString()
-    {
-        return "User ID: " + ClientId + " Name: "
-               + Name + " Address " + " Phone number: " +  Phone;
-    }
     
     // search id of purchase
     public Purchase searchPurchaseById(int id)
     {
         var purchasedInList = Purchases.FirstOrDefault(p => p.Id == id);
         return purchasedInList;
+    }
+    
+    public override string ToString()
+    {
+        return "User ID: " + ClientId + " Name: "
+               + Name + " Address " + " Phone number: " +  Phone;
     }
     
 }

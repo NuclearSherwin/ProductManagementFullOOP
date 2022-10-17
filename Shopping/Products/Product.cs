@@ -11,7 +11,7 @@ public class Product
     private string name;
     private double price;
     private string category;
-    private List<OrderDetail> orderDetails = new List<OrderDetail>();
+    // private List<OrderDetail> orderDetails = new List<OrderDetail>();
     
     
     // constructor
@@ -62,37 +62,31 @@ public class Product
         }
     }
 
-    public List<OrderDetail> OrderDetail
-    {
-        get
-        {
-            return orderDetails;
-        }
-        set
-        {
-            orderDetails = value;
-        }
-    }
+    // public List<OrderDetail> OrderDetail
+    // {
+    //     get
+    //     {
+    //         return orderDetails;
+    //     }
+    //     set
+    //     {
+    //         orderDetails = value;
+    //     }
+    // }
+
+    // public bool RemoveOrderDetail(Purchase purchase)
+    // {
+    //     var orderDetail = OrderDetail.FirstOrDefault(o => o.Purchase.Equals(purchase));
+    //     if (orderDetail == null)
+    //     {
+    //         return false;
+    //     }
+    //
+    //     OrderDetail.Remove(orderDetail);
+    //
+    //     return true;
+    // }
     
-    internal void AddOrderDetail(OrderDetail orderDetail)
-    {
-        OrderDetail.Add(orderDetail);
-    }
-
-    public bool RemoveOrderDetail(Purchase purchase)
-    {
-        var orderDetail = OrderDetail.FirstOrDefault(o => o.Purchase.Equals(purchase));
-        if (orderDetail == null)
-        {
-            return false;
-        }
-
-        OrderDetail.Remove(orderDetail);
-
-        return true;
-    }
-    
-
     public override string ToString()
     {
         return "Product ID: " + ProductId + " Product name: " + name + " Price: " + price + " Category: " + category;

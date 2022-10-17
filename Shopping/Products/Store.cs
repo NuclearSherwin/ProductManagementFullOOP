@@ -250,16 +250,29 @@ public class Store : ILogin
         return productInList;
     }
     
-    // show all order detail
-    public void ShowAllOrderDetails()
+    
+    // add orderDetail
+    public void AddOrderDetail(OrderDetail orderDetail)
     {
-        Console.WriteLine("List of order details: ");
+        OrderDetails.Add(orderDetail);
+    }
+    
+    // show all order detail
+    public void ShowOrderDetails()
+    {
+        Console.WriteLine("Order detail list: ");
+        Console.ForegroundColor = ConsoleColor.Yellow;
         foreach (var orderDetail in OrderDetails)
         {
-            Console.WriteLine($"Product id: {orderDetail.Product.ProductId}");
-            Console.WriteLine($"User purchased: {orderDetail.Purchase.Client.clientId}");
-            Console.WriteLine($"Quantity: {orderDetail.Quantity}");
+            Console.WriteLine($"Quantity {orderDetail.Purchase.Client.clientId}");
+            Console.WriteLine($"Username: {orderDetail.Purchase.Client.Name}");
+            Console.WriteLine($"Product Id: {orderDetail.Product.ProductId}");
+            Console.WriteLine($"Quantity {orderDetail.Quantity}");
         }
+
+        Console.WriteLine("-----------------------------------------------------");
+        Console.ForegroundColor = ConsoleColor.White;
+
     }
     
     // get user bought products by ID

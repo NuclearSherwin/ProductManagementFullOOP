@@ -6,7 +6,7 @@ namespace Shopping.Users;
 public class Purchase
 {
     // fields
-    private int id { get; set; }
+    private int id;
     private Client client;
     private DateTime purchaseDate;
     private List<OrderDetail> orderDetails = new List<OrderDetail>();

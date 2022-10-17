@@ -16,7 +16,6 @@ public class Program
     // store owner, client, orderDetail
     private static Store store = new Store();
     private static Client client = new Client();
-    private static Purchase purchase = new Purchase();
 
     public static void Main(string[] args)
     {
@@ -183,7 +182,7 @@ public class Program
                                                 break;
                                             case 7:
                                                 // show order details of user bought
-                                                purchase.showOrderDetails();
+                                                store.ShowOrderDetails();
                                                 UserInterface.MenuForStoreOwner();
                                                 break;
                                             // case 8:
@@ -313,7 +312,7 @@ public class Program
                                                     // productPurchase.AddOrderDetail(orderDetail);
                                                     // productInList.AddOrderDetail(orderDetail);
                                                     
-                                                    purchase.AddOrderDetail(orderDetail);
+                                                    store.AddOrderDetail(orderDetail);
                                                     
                                                     Console.ForegroundColor = ConsoleColor.Green;
                                                     UserInterface.BoughtSuccessfully();
@@ -330,24 +329,24 @@ public class Program
                                                     Console.WriteLine("Error at: " + e.Message);
                                                 }
                                                 break;
+                                            // case 4:
+                                            //     int userId = UserInterface.EnterClientId();
+                                            //     var userInListPurchase = store.GetUserPurchaseProductById(userId);
+                                            //     Console.WriteLine(userInListPurchase.ToString());
+                                            //     
+                                            //     int purchasedId = UserInterface.EnterPurchaseId();
+                                            //     var foundPurchase = userInListPurchase.searchPurchaseById(purchasedId);
+                                            //
+                                            //     foreach (var removeProductPurchase in foundPurchase.OrderDetailsList)
+                                            //     {
+                                            //         removeProductPurchase.Product.RemoveOrderDetail(foundPurchase);
+                                            //     }
+                                            //
+                                            //     userInListPurchase.RemovePurchase(foundPurchase);
+                                            //     Console.WriteLine("Remove successfully");
+                                            //     UserInterface.MenuForUser();
+                                            //     break;
                                             case 4:
-                                                int userId = UserInterface.EnterClientId();
-                                                var userInListPurchase = store.GetUserPurchaseProductById(userId);
-                                                Console.WriteLine(userInListPurchase.ToString());
-                                                
-                                                int purchasedId = UserInterface.EnterPurchaseId();
-                                                var foundPurchase = userInListPurchase.searchPurchaseById(purchasedId);
-
-                                                foreach (var removeProductPurchase in foundPurchase.OrderDetailsList)
-                                                {
-                                                    removeProductPurchase.Product.RemoveOrderDetail(foundPurchase);
-                                                }
-
-                                                userInListPurchase.RemovePurchase(foundPurchase);
-                                                Console.WriteLine("Remove successfully");
-                                                UserInterface.MenuForUser();
-                                                break;
-                                            case 5:
                                                 goto MenuCommand;
                                         }
                                     } while (true);
