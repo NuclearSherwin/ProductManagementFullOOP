@@ -354,7 +354,8 @@ public class Program
 
                             break;
                         case 3:
-                            Console.WriteLine("Bye bye");
+                            Console.WriteLine("Bye Bye");
+                            Environment.Exit(0);
                             break;
                         default:
                             Console.WriteLine("Invalid option! please try again!");
