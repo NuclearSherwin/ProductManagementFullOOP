@@ -70,7 +70,7 @@ public class Store : ILogin
     }
 
     // check product ID
-    public bool checkProductId(int id)
+    public bool CheckProductId(int id)
     {
         var productId = Products.FirstOrDefault(p => p.ProductId == id);
         if (productId == null)
@@ -82,7 +82,7 @@ public class Store : ILogin
     }
 
     // search product by ID
-    public void searchProductById(int id)
+    public void SearchProductById(int id)
     {
         var products = from p in
                 Products
@@ -110,7 +110,7 @@ public class Store : ILogin
     }
     
     // search product by name
-    public void searchProductByName(string name)
+    public void SearchProductByName(string name)
     {
         var products = from p in
                 Products
@@ -270,7 +270,7 @@ public class Store : ILogin
         Console.ForegroundColor = ConsoleColor.Yellow;
         foreach (var orderDetail in OrderDetails)
         {
-            Console.WriteLine($"Quantity {orderDetail.Purchase.Client.clientId}");
+            Console.WriteLine($"Quantity {orderDetail.Purchase.Client.ClientId}");
             Console.WriteLine($"Username: {orderDetail.Purchase.Client.Name}");
             Console.WriteLine($"Product Id: {orderDetail.Product.ProductId}");
             Console.WriteLine($"Quantity {orderDetail.Quantity}");
@@ -285,7 +285,7 @@ public class Store : ILogin
     public Client GetUserPurchaseById(int idUserToSearch)
     {
         var studentInList = Clients.FirstOrDefault(u => 
-            u.clientId == idUserToSearch);
+            u.ClientId == idUserToSearch);
         return studentInList;
     }
 

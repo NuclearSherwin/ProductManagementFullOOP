@@ -60,7 +60,7 @@ public class Program
                                                 {
                                                     productId = UserInterface.EnterProductId();
                                                     // check if ID for if exist
-                                                    while (store.checkProductId(productId))
+                                                    while (store.CheckProductId(productId))
                                                     {
                                                         UserInterface.DialogIdExisted();
                                                         productId = UserInterface.EnterProductId();
@@ -110,7 +110,7 @@ public class Program
                                                 {
                                                     Console.WriteLine("Enter product ID: ");
                                                     int idProductToUpdate = int.Parse(Console.ReadLine());
-                                                    while (!store.checkProductId(idProductToUpdate))
+                                                    while (!store.CheckProductId(idProductToUpdate))
                                                     {
                                                         Console.ForegroundColor = ConsoleColor.Red;
                                                         UserInterface.ModifyFailed();
@@ -138,7 +138,7 @@ public class Program
                                                 try
                                                 {
                                                     int idToDelete = UserInterface.EnterProductIdToDelete();
-                                                    while (!store.checkProductId(idToDelete))
+                                                    while (!store.CheckProductId(idToDelete))
                                                     {
                                                         Console.ForegroundColor = ConsoleColor.Red;
                                                         UserInterface.ModifyFailed();
@@ -163,12 +163,12 @@ public class Program
                                                 break;
                                             case 5:
                                                 int idToUpdate = UserInterface.EnterExistProductId();
-                                                store.searchProductById(idToUpdate);
+                                                store.SearchProductById(idToUpdate);
                                                 UserInterface.MenuForStoreOwner();
                                                 break;
                                             case 6:
                                                 string nameToSearch = UserInterface.EnterProductName();
-                                                store.searchProductByName(nameToSearch);
+                                                store.SearchProductByName(nameToSearch);
                                                 UserInterface.MenuForStoreOwner();
                                                 break;
                                             case 7:
@@ -278,7 +278,7 @@ public class Program
                                                 {
                                                     Product product = new Product();
                                                     product.ProductId = UserInterface.EnterProductId();
-                                                    while (!store.checkProductId(product.ProductId))
+                                                    while (!store.CheckProductId(product.ProductId))
                                                     {
                                                         Console.ForegroundColor = ConsoleColor.Red;
                                                         Console.WriteLine("ID of purchase does not exist!");
@@ -376,6 +376,7 @@ public class Program
                 Console.WriteLine("Would you like to continue: (Y/N): ");
                 anwser = char.Parse(Console.ReadLine());
             } while (anwser == 'Y' || anwser =='y');
+            Console.WriteLine("Bye Bye");
     }
 
 }

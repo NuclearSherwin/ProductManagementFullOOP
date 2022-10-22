@@ -5,7 +5,7 @@ namespace Shopping.Users;
 
 public class Client : Person, ILogin
 {
-    public int clientId { get; set; }
+    private int clientId;
     private List<Purchase> purchases = new List<Purchase>();
     
     // get and set method

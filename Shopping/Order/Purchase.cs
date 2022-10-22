@@ -85,7 +85,7 @@ public class Purchase
         Console.ForegroundColor = ConsoleColor.Yellow;
         foreach (var orderDetail in OrderDetailsList)
         {
-            Console.WriteLine($"Quantity {orderDetail.Purchase.Client.clientId}");
+            Console.WriteLine($"Quantity {orderDetail.Purchase.Client.ClientId}");
             Console.WriteLine($"Username: {orderDetail.Purchase.Client.Name}");
             Console.WriteLine($"Product Id: {orderDetail.Product.ProductId}");
             Console.WriteLine($"Quantity {orderDetail.Quantity}");
