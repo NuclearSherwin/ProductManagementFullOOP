@@ -270,7 +270,7 @@ public class Store : ILogin
         Console.ForegroundColor = ConsoleColor.Yellow;
         foreach (var orderDetail in OrderDetails)
         {
-            Console.WriteLine($"Quantity {orderDetail.Purchase.Client.ClientId}");
+            Console.WriteLine($"User ID: {orderDetail.Purchase.Client.ClientId}");
             Console.WriteLine($"Username: {orderDetail.Purchase.Client.Name}");
             Console.WriteLine($"Product Id: {orderDetail.Product.ProductId}");
             Console.WriteLine($"Quantity {orderDetail.Quantity}");

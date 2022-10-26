@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/phong/work/console-app-c#/Shopping/Shopping/Shopping.csproj",
+      "projectUniqueName": "/home/phong/my-work-place/c#-apps/console-apps/ProductManagementFullOOP/Shopping/Shopping.csproj",
       "projectName": "Shopping",
-      "projectPath": "/home/phong/work/console-app-c#/Shopping/Shopping/Shopping.csproj",
+      "projectPath": "/home/phong/my-work-place/c#-apps/console-apps/ProductManagementFullOOP/Shopping/Shopping.csproj",
       "packagesPath": "/home/phong/.nuget/packages/",
-      "outputPath": "/home/phong/work/console-app-c#/Shopping/Shopping/obj/",
+      "outputPath": "/home/phong/my-work-place/c#-apps/console-apps/ProductManagementFullOOP/Shopping/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/phong/.nuget/NuGet/NuGet.Config"
@@ -59,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/phong/.dotnet/sdk/6.0.402/RuntimeIdentifierGraph.json"
       }
     }
   }

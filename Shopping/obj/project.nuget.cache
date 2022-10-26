@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lXCX21e72b2cylw+pGUc6j4VYJvpvkfc3OetZCWh/OMiWo7xEX2Guri5xYyOVnyO8sBiVMSCReAxsdwCjvuziw==",
+  "dgSpecHash": "/rLTLOrvPG7wedCho8NdbQmZ+8akCSwQN4xlDvQb36hovgaieu/LDeAWTrDkwaKzEraggMBDuZ0ZJJFMQcLFrQ==",
   "success": true,
-  "projectFilePath": "/home/phong/work/console-app-c#/Shopping/Shopping/Shopping.csproj",
+  "projectFilePath": "/home/phong/my-work-place/c#-apps/console-apps/ProductManagementFullOOP/Shopping/Shopping.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
